@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOMOER CHAMPIONS CUP 2026 - Pendaftaran Resmi</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET & VARIABLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #FFD700;
+            --primary-gold-light: #FFE55C;
+            --primary-gold-dark: #DAA520;
+            --primary-black: #0A0C0F;
+            --primary-dark: #12141A;
+            --secondary-dark: #1A1E2A;
+            --accent-green: #00FF88;
+            --text-white: #FFFFFF;
+            --text-gray: #A0A0A0;
+            --text-soft: #CCCCCC;
+        }
+
+        body {
+            background: var(--primary-black);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-white);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Background Pattern */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(255,215,0,0.08) 0%, transparent 30%),
+                        radial-gradient(circle at 80% 70%, rgba(0,255,136,0.05) 0%, transparent 30%),
+                        radial-gradient(circle at 40% 80%, rgba(255,215,0,0.05) 0%, transparent 40%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 30px;
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FFD700, #FFFFFF, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            color: var(--text-gray);
+            letter-spacing: 3px;
+            font-size: 14px;
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .info-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 20px;
+            padding: 25px 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+        }
+
+        .info-card i {
+            font-size: 40px;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            color: var(--primary-gold);
+            font-size: 16px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .info-card .value {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .info-card .sub {
+            color: var(--text-gray);
+            font-size: 13px;
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            background: linear-gradient(145deg, #12141A, #1A1E2A);
+            border-radius: 40px;
+            padding: 50px 30px;
+            margin: 50px 0;
+            border: 2px solid var(--primary-gold);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-section::before {
+            content: '15 MAR 2026';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100px;
+            font-weight: 900;
+            color: rgba(255,215,0,0.03);
+            white-space: nowrap;
+            z-index: 0;
+        }
+
+        .countdown-title {
+            color: var(--primary-gold);
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-date {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timer-block {
+            background: rgba(0,0,0,0.5);
+            border: 2px solid var(--primary-gold);
+            border-radius: 20px;
+            padding: 20px;
+            min-width: 120px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .timer-number {
+            font-size: 60px;
+            font-weight: 900;
+            color: var(--primary-gold);
+            line-height: 1;
+            text-shadow: 0 0 20px var(--primary-gold);
+        }
+
+        .timer-label {
+            color: white;
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,215,0,0.3);
+            border-radius: 40px;
+            padding: 50px;
+            margin: 50px 0;
+        }
+
+        .form-title {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .form-title h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary-gold);
+        }
+
+        .secure-badge {
+            background: rgba(0,255,136,0.1);
+            border: 2px solid var(--accent-green);
+            padding: 8px 25px;
+            border-radius: 50px;
+            color: var(--accent-green);
+            font-weight: 600;
+            font-size: 14px;
+            margin-left: auto;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-gold);
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group label i {
+            margin-right: 8px;
+            color: var(--primary-gold);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,215,0,0.3);
+            border-radius: 30px;
+            font-size: 15px;
+            color: white;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 30px rgba(255,215,0,0.2);
+            outline: none;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        select.form-control {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ffd700' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+        }
+
+        select.form-control option {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        /* Checkbox Grid */
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            background: rgba(255,255,255,0.02);
+            padding: 30px;
+            border-radius: 30px;
+            margin: 30px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary-gold);
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            color: white;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        /* Bank Section */
+        .bank-section {
+            margin: 40px 0;
+        }
+
+        .bank-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .bank-card {
+            background: rgba(255,255,255,0.03);
+            border: 2px solid rgba(255,215,0,0.3);
+            border-radius: 20px;
+            padding: 20px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .bank-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255,215,0,0.2);
+            background: rgba(255,215,0,0.05);
+        }
+
+        .bank-logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: 900;
+            color: black;
+            font-size: 20px;
+        }
+
+        .bank-card h4 {
+            color: var(--primary-gold);
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .bank-card p {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* Bank Info Panel */
+        .bank-info-panel {
+            background: rgba(255,215,0,0.1);
+            border: 3px solid var(--primary-gold);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 30px 0;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bank-info-panel h3 {
+            color: var(--primary-gold);
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .bank-detail {
+            font-size: 22px;
+            color: white;
+            margin: 15px 0;
+        }
+
+        .bank-detail strong {
+            color: var(--primary-gold);
+            font-size: 28px;
+        }
+
+        #bankQr {
+            width: 200px;
+            height: 200px;
+            border: 3px solid var(--primary-gold);
+            border-radius: 20px;
+            padding: 10px;
+            background: white;
+            margin: 20px auto;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #0A0C0F;
+            border: none;
+            padding: 18px 40px;
+            font-size: 22px;
+            font-weight: 800;
+            border-radius: 60px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 3px solid white;
+            transition: all 0.3s;
+            margin: 20px 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255,215,0,0.4);
+        }
+
+        .btn-wa {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 60px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-wa:hover {
+            background: #128C7E;
+            transform: scale(1.05);
+            border-color: white;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: linear-gradient(145deg, #12141A, #1A1E2A);
+            border: 4px solid var(--primary-gold);
+            border-radius: 60px;
+            padding: 50px 40px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .code-box {
+            background: rgba(255,215,0,0.1);
+            padding: 25px;
+            border-radius: 40px;
+            margin: 25px 0;
+            border: 2px solid #FFD700;
+        }
+
+        .code-box p {
+            font-size: 36px;
+            font-weight: 900;
+            color: #FFD700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        /* Info Grid Turnamen */
+        .info-grid-turnamen {
+            background: rgba(255,215,0,0.05);
+            border: 2px solid #FFD700;
+            border-radius: 40px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .info-title {
+            color: #FFD700;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 15px;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 15px 20px;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .info-icon {
+            color: #FFD700;
+            font-size: 22px;
+        }
+
+        .info-text strong {
+            color: #FFD700;
+            margin-right: 5px;
+        }
+
+        .info-highlight {
+            color: #00FF88;
+            font-weight: 800;
+        }
+
+        .info-note {
+            background: rgba(255,215,0,0.1);
+            border-radius: 30px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            color: #FFD700;
+        }
+
+        /* Footer - UPDATE SESUAI PERMINTAAN */
+        .footer {
+            background: linear-gradient(145deg, #0A0C0F, #000000);
+            border-radius: 40px 40px 0 0;
+            padding: 50px 40px 30px;
+            margin-top: 80px;
+            border-top: 3px solid var(--primary-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '⚽🏆⚽🏆⚽🏆⚽';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-size: 150px;
+            opacity: 0.03;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FFD700, #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .footer-copyright {
+            color: var(--primary-gold);
+            font-size: 18px;
+            font-weight: 600;
+            margin: 20px 0 10px;
+            letter-spacing: 1px;
+        }
+
+        .footer-address {
+            color: var(--text-soft);
+            font-size: 16px;
+            margin: 15px 0;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-credit {
+            color: var(--text-gray);
+            font-size: 14px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,215,0,0.2);
+            font-style: italic;
+        }
+
+        .footer-credit strong {
+            color: var(--primary-gold);
+        }
+
+        /* Utility */
+        .hidden {
+            display: none;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-4 {
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .bank-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+            
+            .form-grid,
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .countdown-date {
+                font-size: 32px;
+            }
+            
+            .timer-block {
+                min-width: 70px;
+                padding: 15px;
+            }
+            
+            .timer-number {
+                font-size: 40px;
+            }
+            
+            .bank-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .form-title {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .secure-badge {
+                margin-left: 0;
+            }
+            
+            .info-row {
+                grid-template-columns: 1fr;
+                gap: 5px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .bank-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-logo {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>⚽ BOMOER CHAMPIONS CUP 2026 ⚽</h1>
+            <p>OFFICIAL REGISTRATION PORTAL</p>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="info-grid">
+            <div class="info-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>TANGGAL</h3>
+                <div class="value">22-25 MARET</div>
+                <div class="sub">2026</div>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-clock"></i>
+                <h3>WAKTU</h3>
+                <div class="value">08.00 - SELESAI</div>
+                <div class="sub">WIB</div>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>LOKASI</h3>
+                <div class="value">LAPANGAN BOMOER</div>
+                <div class="sub">Dusun Karangsari</div>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-wallet"></i>
+                <h3>BIAYA</h3>
+                <div class="value">Rp 950.000</div>
+                <div class="sub">(Termasuk Jaminan Rp 150rb)</div>
+            </div>
+        </div>
+
+        <!-- Countdown -->
+        <div class="countdown-section" id="countdownSection">
+            <div class="countdown-title">⚡ BATAS AKHIR PENDAFTARAN ⚡</div>
+            <div class="countdown-date">MINGGU, 15 MARET 2026</div>
+            <div class="countdown-date" style="font-size: 32px;">PUKUL 17:00 WIB</div>
+            
+            <div class="timer" id="timer">
+                <div class="timer-block">
+                    <div class="timer-number" id="days">00</div>
+                    <div class="timer-label">HARI</div>
+                </div>
+                <div class="timer-block">
+                    <div class="timer-number" id="hours">00</div>
+                    <div class="timer-label">JAM</div>
+                </div>
+                <div class="timer-block">
+                    <div class="timer-number" id="minutes">00</div>
+                    <div class="timer-label">MENIT</div>
+                </div>
+                <div class="timer-block">
+                    <div class="timer-number" id="seconds">00</div>
+                    <div class="timer-label">DETIK</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Pendaftaran -->
+        <div class="form-section" id="formPendaftaran">
+            <div class="form-title">
+                <h2><i class="fas fa-edit"></i> FORM PENDAFTARAN</h2>
+                <div class="secure-badge">
+                    <i class="fas fa-lock"></i> Data Terenkripsi
+                </div>
+            </div>
+
+            <form id="registrationForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fas fa-users"></i> Nama Tim/Klub *</label>
+                        <input type="text" class="form-control" id="teamName" placeholder="Contoh: BOMOER FC" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-map-pin"></i> Asal Daerah *</label>
+                        <input type="text" class="form-control" id="origin" placeholder="Contoh: Cilacap / Banyumas" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-user-tie"></i> Penanggung Jawab *</label>
+                        <input type="text" class="form-control" id="picName" placeholder="Nama lengkap sesuai KTP" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-briefcase"></i> Jabatan *</label>
+                        <select class="form-control" id="position" required>
+                            <option value="" disabled selected>Pilih Jabatan</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Pelatih">Pelatih</option>
+                            <option value="Kapten">Kapten</option>
+                            <option value="Official">Official</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fab fa-whatsapp"></i> No WhatsApp *</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Contoh: 08123456789" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="contoh@email.com">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-home"></i> Alamat Lengkap *</label>
+                        <textarea class="form-control" id="address" rows="3" placeholder="Alamat sesuai KTP" required></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-id-card"></i> Upload KTP Penanggung Jawab *</label>
+                        <input type="file" class="form-control" id="ktpFile" accept=".jpg,.jpeg,.png,.pdf" required>
+                    </div>
+                </div>
+
+                <!-- Checkbox Persetujuan -->
+                <div class="checkbox-grid">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="agree1" required>
+                        <label for="agree1">Mematuhi seluruh peraturan turnamen</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="agree2" required>
+                        <label for="agree2">Bermain dengan jiwa fair play</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="agree3" required>
+                        <label for="agree3">Bertanggung jawab atas supporter</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="agree4" required>
+                        <label for="agree4">Siap menerima sanksi jika melanggar</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-paper-plane"></i> DAFTAR SEKARANG
+                </button>
+            </form>
+        </div>
+
+        <!-- Payment Section (Awalnya Hidden) -->
+        <div id="paymentSection" class="form-section hidden">
+            <div class="form-title" style="justify-content: center;">
+                <h2><i class="fas fa-credit-card"></i> INFORMASI PEMBAYARAN</h2>
+            </div>
+            
+            <div class="text-center" style="margin: 30px 0;">
+                <div style="font-size: 60px; font-weight: 900; color: #FFD700; text-shadow: 0 0 30px #FFD700;">Rp 400.000</div>
+                <div style="font-size: 18px; color: var(--text-soft);">DP Minimal 50% dari Rp 800.000 (Rp 400.000)</div>
+                <div style="font-size: 14px; color: #FFD700; margin-top: 5px;">+ Rp 150.000 Uang Jaminan dibayar saat pelunasan</div>
+                <div style="font-size: 20px; color: #00FF88; font-weight: 800; margin-top: 10px;">Total: Rp 950.000</div>
+            </div>
+
+            <!-- Bank Cards -->
+            <div class="bank-section">
+                <h3 style="color: #FFD700; text-align: center; margin-bottom: 30px;">KLIK BANK UNTUK MELIHAT REKENING</h3>
+                <div class="bank-grid">
+                    <div class="bank-card" onclick="showBankInfo('bca')">
+                        <div class="bank-logo" style="background: #0066AE; color: white;">BCA</div>
+                        <h4>BANK BCA</h4>
+                        <p>Klik lihat rekening</p>
+                    </div>
+                    <div class="bank-card" onclick="showBankInfo('bri')">
+                        <div class="bank-logo" style="background: #00529C; color: white;">BRI</div>
+                        <h4>BANK BRI</h4>
+                        <p>Klik lihat rekening</p>
+                    </div>
+                    <div class="bank-card" onclick="showBankInfo('mandiri')">
+                        <div class="bank-logo" style="background: #00843D; color: white;">MANDIRI</div>
+                        <h4>BANK MANDIRI</h4>
+                        <p>Klik lihat rekening</p>
+                    </div>
+                    <div class="bank-card" onclick="showBankInfo('bsi')">
+                        <div class="bank-logo" style="background: #7F2B7B; color: white;">BSI</div>
+                        <h4>BANK BSI</h4>
+                        <p>Klik lihat rekening</p>
+                    </div>
+                    <div class="bank-card" onclick="showBankInfo('lain')">
+                        <div class="bank-logo" style="background: #FFD700; color: black;">LAIN</div>
+                        <h4>BANK LAINNYA</h4>
+                        <p>Klik lihat info</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bank Info Panel (Akan muncul setelah klik bank) -->
+            <div id="bankInfoPanel" class="bank-info-panel hidden">
+                <h3 id="bankName">BANK BCA</h3>
+                <div class="bank-detail">
+                    <p>No Rekening: <strong id="bankAccount">1234567890</strong></p>
+                    <p>A/N: <strong id="bankHolder">Panitia BCC 2026</strong></p>
+                </div>
+                <img id="bankQr" src="" alt="QR Code" style="width: 200px; height: 200px;">
+                <p style="color: #FFD700; margin-top: 15px;">⬆️ Scan QR untuk transfer cepat ⬆️</p>
+                <button onclick="closeBankPanel()" style="margin-top: 20px; padding: 10px 30px; background: #FFD700; border: none; border-radius: 30px; font-weight: bold; cursor: pointer;">Tutup</button>
+            </div>
+
+            <!-- Form Bukti Transfer -->
+            <div class="form-grid" style="margin-top: 40px;">
+                <div class="form-group">
+                    <label><i class="fas fa-file-invoice"></i> Upload Bukti Transfer *</label>
+                    <input type="file" class="form-control" id="paymentProof" accept=".jpg,.jpeg,.png,.pdf" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-money-bill-wave"></i> Nominal Transfer (Min. Rp 400.000) *</label>
+                    <input type="number" class="form-control" id="transferAmount" min="400000" placeholder="Contoh: 400000" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Nama Pengirim *</label>
+                    <input type="text" class="form-control" id="senderName" placeholder="Nama sesuai rekening" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-university"></i> Bank Asal *</label>
+                    <select class="form-control" id="senderBank" required>
+                        <option value="" disabled selected>Pilih Bank</option>
+                        <option value="BCA">BCA</option>
+                        <option value="BRI">BRI</option>
+                        <option value="Mandiri">Mandiri</option>
+                        <option value="BSI">BSI</option>
+                        <option value="BNI">BNI</option>
+                        <option value="Lainnya">Bank Lainnya</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="submitRegistration()" class="btn-primary">
+                <i class="fas fa-check-circle"></i> KIRIM PENDAFTARAN
+            </button>
+
+            <!-- Tombol WhatsApp -->
+            <div style="background: rgba(255,215,0,0.1); border-radius: 40px; padding: 40px; text-align: center; margin-top: 40px;">
+                <h3 style="color: #FFD700; margin-bottom: 30px; font-size: 24px;">
+                    <i class="fab fa-whatsapp"></i> KONFIRMASI VIA WHATSAPP
+                </h3>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <button class="btn-wa" id="waAsep">
+                        <i class="fab fa-whatsapp"></i> Asep (0813-2154-2594)
+                    </button>
+                    <button class="btn-wa" id="waAbdul">
+                        <i class="fab fa-whatsapp"></i> Abdul (0812-8351-6212)
+                    </button>
+                </div>
+                <p style="color: #FFD700; margin-top: 20px; font-size: 14px;">Klik tombol di atas untuk langsung chat via WhatsApp</p>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div id="result"></div>
+
+        <!-- FOOTER - UPDATE SESUAI PERMINTAAN -->
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    © PANITIA TURNAMEN "BOMOER CHAMPIONS CUP 2026"
+                </div>
+                
+                <div class="footer-address">
+                    Dusun Karangsari, Desa Karangsari, Kec. Cimanggu, Kab. Cilacap
+                </div>
+                
+                <div class="footer-copyright">
+                    @TeamArahBaru All Right Reserve
+                </div>
+                
+                <div class="footer-credit">
+                    <strong>BOMOER CHAMPIONS CUP 2026</strong> - Turnamen Sepakbola Bergengsi Se-Wilayah
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // DATA BANK (Isi dengan rekening asli panitia)
+        // ============================================
+        const bankData = {
+            bca: {
+                name: "BANK BCA",
+                account: "1234567890",
+                holder: "Panitia BCC 2026 (Asep Nurhakim)",
+                qr: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BCA%3A1234567890%3Aa.n%20Panitia%20BCC%202026"
+            },
+            bri: {
+                name: "BANK BRI",
+                account: "0987654321",
+                holder: "Panitia BCC 2026 (Abdul Gopar)",
+                qr: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BRI%3A0987654321%3Aa.n%20Panitia%20BCC%202026"
+            },
+            mandiri: {
+                name: "BANK MANDIRI",
+                account: "1122334455",
+                holder: "Panitia BCC 2026",
+                qr: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=MANDIRI%3A1122334455%3Aa.n%20Panitia%20BCC%202026"
+            },
+            bsi: {
+                name: "BANK BSI",
+                account: "5566778899",
+                holder: "Panitia BCC 2026",
+                qr: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BSI%3A5566778899%3Aa.n%20Panitia%20BCC%202026"
+            },
+            lain: {
+                name: "BANK LAINNYA",
+                account: "Hubungi Panitia",
+                holder: "Asep / Abdul",
+                qr: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=Hubungi%20Panitia%20via%20WA"
+            }
+        };
+
+        // ============================================
+        // COUNTDOWN TIMER
+        // ============================================
+        function updateCountdown() {
+            const deadline = new Date('March 15, 2026 17:00:00 GMT+7').getTime();
+            const now = new Date().getTime();
+            const distance = deadline - now;
+
+            if (distance < 0) {
+                document.getElementById('timer').innerHTML = '<h3 style="color: #FFD700;">⏰ PENDAFTARAN TELAH DITUTUP ⏰</h3>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+
+        // ============================================
+        // FUNGSI BANK INFO
+        // ============================================
+        function showBankInfo(bankKey) {
+            const bank = bankData[bankKey];
+            if (!bank) return;
+
+            document.getElementById('bankName').textContent = bank.name;
+            document.getElementById('bankAccount').textContent = bank.account;
+            document.getElementById('bankHolder').textContent = bank.holder;
+            document.getElementById('bankQr').src = bank.qr;
+            document.getElementById('bankInfoPanel').classList.remove('hidden');
+        }
+
+        function closeBankPanel() {
+            document.getElementById('bankInfoPanel').classList.add('hidden');
+        }
+
+        // ============================================
+        // FUNGSI WHATSAPP
+        // ============================================
+        function openWhatsApp(phone, message) {
+            // Hapus semua karakter non-angka
+            const cleanPhone = phone.replace(/[^0-9]/g, '');
+            // Format ke 62
+            const formattedPhone = cleanPhone.startsWith('62') ? cleanPhone : '62' + cleanPhone.slice(1);
+            // Encode pesan
+            const encodedMessage = encodeURIComponent(message);
+            // Buka WhatsApp
+            window.open(`https://wa.me/${formattedPhone}?text=${encodedMessage}`, '_blank');
+        }
+
+        // ============================================
+        // HANDLE FORM SUBMIT (Langkah 1 - Data Tim)
+        // ============================================
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validasi checkbox
+            if (!document.getElementById('agree1').checked || !document.getElementById('agree2').checked || 
+                !document.getElementById('agree3').checked || !document.getElementById('agree4').checked) {
+                alert('Harap centang semua persetujuan!');
+                return;
+            }
+
+            // Validasi file KTP
+            if (!document.getElementById('ktpFile').files[0]) {
+                alert('Harap upload file KTP!');
+                return;
+            }
+
+            // Simpan data ke session storage
+            const formData = {
+                teamName: document.getElementById('teamName').value,
+                origin: document.getElementById('origin').value,
+                picName: document.getElementById('picName').value,
+                position: document.getElementById('position').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                address: document.getElementById('address').value,
+                registrationCode: 'BCC-' + Math.random().toString(36).substr(2, 9).toUpperCase() + '-2026'
+            };
+
+            sessionStorage.setItem('pendingRegistration', JSON.stringify(formData));
+
+            // Sembunyikan form, tampilkan payment
+            document.getElementById('formPendaftaran').classList.add('hidden');
+            document.getElementById('paymentSection').classList.remove('hidden');
+            
+            // Scroll ke payment section
+            document.getElementById('paymentSection').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // ============================================
+        // SUBMIT FINAL - DENGAN URL APPS SCRIPT YANG ANDA BERIKAN
+        // ============================================
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxXZruj61MYUAPFYD4fkzmuxbLMzkUbkk22LAC1_Ibrfm4lenhosoLtmxeajaEJMRfY/exec';
+
+        function submitRegistration() {
+            // Validasi file bukti transfer
+            const paymentProof = document.getElementById('paymentProof').files[0];
+            if (!paymentProof) {
+                alert('Harap upload bukti transfer!');
+                return;
+            }
+
+            // Validasi nominal
+            const transferAmount = document.getElementById('transferAmount').value;
+            if (transferAmount < 400000) {
+                alert('Minimal transfer adalah Rp 400.000!');
+                return;
+            }
+
+            // Ambil data dari session
+            const formData = JSON.parse(sessionStorage.getItem('pendingRegistration'));
+            
+            if (!formData) {
+                alert('Data tidak ditemukan. Silakan daftar ulang.');
+                return;
+            }
+
+            // Data lengkap
+            const completeData = {
+                ...formData,
+                timestamp: new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' }),
+                transferAmount: transferAmount,
+                senderName: document.getElementById('senderName').value,
+                senderBank: document.getElementById('senderBank').value,
+                paymentStatus: '🔵 Menunggu Verifikasi'
+            };
+
+            // ========================================
+            // KIRIM KE GOOGLE SHEETS (URL YANG ANDA BERIKAN)
+            // ========================================
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(completeData)
+            })
+            .then(() => {
+                console.log('Data terkirim ke Google Sheets');
+            })
+            .catch(error => {
+                console.error('Gagal kirim:', error);
+            });
+
+            // Simpan ke localStorage sebagai backup
+            let registrations = JSON.parse(localStorage.getItem('bccRegistrations') || '[]');
+            registrations.push(completeData);
+            localStorage.setItem('bccRegistrations', JSON.stringify(registrations));
+
+            // Sembunyikan payment section
+            document.getElementById('paymentSection').classList.add('hidden');
+            
+            // ========================================
+            // TAMPILKAN PESAN SUKSES + INFO TURNAMEN
+            // ========================================
+            document.getElementById('result').innerHTML = `
+                <div class="success-message">
+                    
+                    <!-- Icon Sukses -->
+                    <i class="fas fa-check-circle" style="font-size: 100px; color: #00FF88; margin-bottom: 20px;"></i>
+                    
+                    <!-- Judul Sukses -->
+                    <h2 style="color: #FFD700; font-size: 42px; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;">PENDAFTARAN BERHASIL!</h2>
+                    
+                    <!-- Kode Registrasi -->
+                    <div class="code-box">
+                        <p>${completeData.registrationCode}</p>
+                        <p style="color: white; font-size: 16px;">Simpan kode ini untuk konfirmasi</p>
+                    </div>
+                    
+                    <!-- Ucapan Terima Kasih -->
+                    <p style="color: white; font-size: 24px; margin: 20px 0;">Terima kasih <strong style="color: #FFD700;">${completeData.teamName}</strong>!</p>
+                    
+                    <!-- Status -->
+                    <p style="color: #FFD700; font-size: 20px; margin-bottom: 30px;">Status: <strong style="color: #00FF88;">Menunggu Verifikasi Pembayaran</strong></p>
+                    
+                    <!-- ===== INFO TURNAMEN ===== -->
+                    <div class="info-grid-turnamen">
+                        
+                        <!-- Judul Info -->
+                        <h3 class="info-title">
+                            <i class="fas fa-info-circle" style="margin-right: 10px;"></i> INFORMASI TURNAMEN
+                        </h3>
+                        
+                        <!-- Grid Info -->
+                        <div class="info-row">
+                            <div class="info-icon">📅</div>
+                            <div class="info-text"><strong>Tanggal:</strong> 22 - 25 Maret 2026</div>
+                        </div>
+                        
+                        <div class="info-row">
+                            <div class="info-icon">📍</div>
+                            <div class="info-text"><strong>Tempat:</strong> Lapangan Bomoer, Dusun Karangsari</div>
+                        </div>
+                        
+                        <div class="info-row">
+                            <div class="info-icon">💰</div>
+                            <div class="info-text"><strong>Biaya Pendaftaran:</strong> Rp 800.000</div>
+                        </div>
+                        
+                        <div class="info-row">
+                            <div class="info-icon">🔒</div>
+                            <div class="info-text"><strong>Uang Jaminan:</strong> Rp 150.000 (dibayar saat pelunasan pendaftaran)</div>
+                        </div>
+                        
+                        <div class="info-row">
+                            <div class="info-icon">💳</div>
+                            <div class="info-text"><strong>Total Pembayaran:</strong> <span class="info-highlight">Rp 950.000</span></div>
+                        </div>
+                        
+                        <div class="info-row">
+                            <div class="info-icon">⏰</div>
+                            <div class="info-text"><strong>Batas Pendaftaran:</strong> 15 Maret 2026 pukul 17.00 WIB</div>
+                        </div>
+                        
+                        <div class="info-row">
+                            <div class="info-icon">🎯</div>
+                            <div class="info-text"><strong>Technical Meeting:</strong> Jum'at, 13 Maret 2026, Pukul 14.00 WIB</div>
+                        </div>
+                        
+                        <!-- Catatan Penting -->
+                        <div class="info-note">
+                            <i class="fas fa-exclamation-triangle" style="margin-right: 5px;"></i>
+                            Harap hadir tepat waktu di Technical Meeting untuk pengundian grup dan penjelasan peraturan.
+                        </div>
+                    </div>
+                    
+                    <!-- Instruksi Konfirmasi WA -->
+                    <p style="color: white; font-size: 18px; margin: 20px 0;">Silakan konfirmasi via WhatsApp dengan klik tombol di bawah:</p>
+                    
+                    <!-- Tombol WA -->
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 25px; flex-wrap: wrap;">
+                        <button class="btn-wa" onclick="openWhatsApp('081321542594', 'Halo kak Asep, saya dari tim *${completeData.teamName}* (Kode: ${completeData.registrationCode}) ingin konfirmasi pendaftaran.')">
+                            <i class="fab fa-whatsapp"></i> Konfirmasi ke Asep
+                        </button>
+                        <button class="btn-wa" onclick="openWhatsApp('081283516212', 'Halo kak Abdul, saya dari tim *${completeData.teamName}* (Kode: ${completeData.registrationCode}) ingin konfirmasi pendaftaran.')">
+                            <i class="fab fa-whatsapp"></i> Konfirmasi ke Abdul
+                        </button>
+                    </div>
+                    
+                    <!-- Footer Info -->
+                    <p style="color: #FFD700; font-size: 14px; margin-top: 30px;">
+                        <i class="fas fa-check-circle" style="color: #00FF88;"></i> 
+                        Data Anda akan diverifikasi paling lambat 1x24 jam
+                    </p>
+                </div>
+            `;
+
+            // Hapus dari session
+            sessionStorage.removeItem('pendingRegistration');
+            
+            // Scroll ke result
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ============================================
+        // EVENT LISTENER UNTUK TOMBOL WA (di payment)
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('waAsep')?.addEventListener('click', function() {
+                const teamName = document.getElementById('teamName')?.value || 'calon peserta';
+                const regCode = sessionStorage.getItem('pendingRegistration') ? 
+                    JSON.parse(sessionStorage.getItem('pendingRegistration')).registrationCode : '';
+                
+                openWhatsApp('081321542594', `Halo kak Asep, saya dari tim *${teamName}* (Kode: ${regCode}) ingin konfirmasi pendaftaran.`);
+            });
+
+            document.getElementById('waAbdul')?.addEventListener('click', function() {
+                const teamName = document.getElementById('teamName')?.value || 'calon peserta';
+                const regCode = sessionStorage.getItem('pendingRegistration') ? 
+                    JSON.parse(sessionStorage.getItem('pendingRegistration')).registrationCode : '';
+                
+                openWhatsApp('081283516212', `Halo kak Abdul, saya dari tim *${teamName}* (Kode: ${regCode}) ingin konfirmasi pendaftaran.`);
+            });
+        });
+    </script>
+</body>
+</html>
