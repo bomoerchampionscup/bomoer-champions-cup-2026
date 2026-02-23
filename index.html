@@ -414,17 +414,6 @@
             margin-bottom: 20px;
         }
 
-        .bank-detail {
-            font-size: 24px;
-            color: white;
-            margin: 20px 0;
-        }
-
-        .bank-detail strong {
-            color: var(--primary-gold);
-            font-size: 28px;
-        }
-
         .rekening-box {
             background: rgba(255,215,0,0.2);
             border: 2px dashed var(--primary-gold);
@@ -435,6 +424,18 @@
             font-weight: 900;
             color: white;
             letter-spacing: 2px;
+            font-family: monospace;
+        }
+
+        .bank-detail {
+            font-size: 24px;
+            color: white;
+            margin: 20px 0;
+        }
+
+        .bank-detail strong {
+            color: var(--primary-gold);
+            font-size: 28px;
         }
 
         #bankQr {
@@ -711,6 +712,10 @@
             
             .footer-logo {
                 font-size: 22px;
+            }
+            
+            .rekening-box {
+                font-size: 24px;
             }
         }
     </style>
@@ -1086,7 +1091,7 @@
         // ============================================
         // SUBMIT FINAL - GANTI DENGAN URL APPS SCRIPT ANDA
         // ============================================
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwl_CKpMcr051u12CZFWOarHlpwfSQzIAdbfi0I0bF72PMkgudPVhgpjUGuV7oGsk50/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxwFRbnO36_6jty7KvhY1RcwsiIhaxkGto_HPznqxdOejjmgonPx2MKEzMm9Yd1MlGh/exec';
 
         function submitRegistration() {
             // Validasi file bukti transfer
