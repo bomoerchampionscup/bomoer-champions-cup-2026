@@ -27,6 +27,7 @@
             --text-white: #FFFFFF;
             --text-gray: #A0A0A0;
             --text-soft: #CCCCCC;
+            --bri-color: #00529C;
         }
 
         body {
@@ -342,58 +343,53 @@
             cursor: pointer;
         }
 
-        /* Bank Section */
+        /* Bank Section - HANYA BRI */
         .bank-section {
             margin: 40px 0;
         }
 
-        .bank-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-            margin: 30px 0;
-        }
-
         .bank-card {
             background: rgba(255,255,255,0.03);
-            border: 2px solid rgba(255,215,0,0.3);
+            border: 2px solid var(--primary-gold);
             border-radius: 20px;
-            padding: 20px 10px;
+            padding: 30px 20px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
+            max-width: 300px;
+            margin: 0 auto;
         }
 
         .bank-card:hover {
-            border-color: var(--primary-gold);
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(255,215,0,0.2);
             background: rgba(255,215,0,0.05);
         }
 
         .bank-logo {
-            width: 60px;
-            height: 60px;
-            background: white;
+            width: 80px;
+            height: 80px;
+            background: var(--bri-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 15px;
+            margin: 0 auto 20px;
             font-weight: 900;
-            color: black;
-            font-size: 20px;
+            color: white;
+            font-size: 24px;
+            border: 3px solid var(--primary-gold);
         }
 
         .bank-card h4 {
             color: var(--primary-gold);
-            margin-bottom: 5px;
-            font-size: 16px;
+            margin-bottom: 10px;
+            font-size: 24px;
         }
 
         .bank-card p {
-            font-size: 12px;
-            color: var(--text-gray);
+            font-size: 14px;
+            color: var(--text-soft);
         }
 
         /* Bank Info Panel */
@@ -419,14 +415,26 @@
         }
 
         .bank-detail {
-            font-size: 22px;
+            font-size: 24px;
             color: white;
-            margin: 15px 0;
+            margin: 20px 0;
         }
 
         .bank-detail strong {
             color: var(--primary-gold);
             font-size: 28px;
+        }
+
+        .rekening-box {
+            background: rgba(255,215,0,0.2);
+            border: 2px dashed var(--primary-gold);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 32px;
+            font-weight: 900;
+            color: white;
+            letter-spacing: 2px;
         }
 
         #bankQr {
@@ -467,9 +475,9 @@
             background: #25D366;
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 15px 40px;
             border-radius: 60px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             cursor: pointer;
             display: inline-flex;
@@ -564,7 +572,7 @@
             color: #FFD700;
         }
 
-        /* Footer - UPDATE SESUAI PERMINTAAN */
+        /* Footer */
         .footer {
             background: linear-gradient(145deg, #0A0C0F, #000000);
             border-radius: 40px 40px 0 0;
@@ -651,10 +659,6 @@
             .info-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            .bank-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
         }
 
         @media (max-width: 768px) {
@@ -684,10 +688,6 @@
                 font-size: 40px;
             }
             
-            .bank-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
             .form-title {
                 flex-direction: column;
                 align-items: flex-start;
@@ -706,10 +706,6 @@
 
         @media (max-width: 480px) {
             .info-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .bank-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -880,46 +876,26 @@
                 <div style="font-size: 20px; color: #00FF88; font-weight: 800; margin-top: 10px;">Total: Rp 950.000</div>
             </div>
 
-            <!-- Bank Cards -->
+            <!-- Bank Cards - HANYA BRI -->
             <div class="bank-section">
-                <h3 style="color: #FFD700; text-align: center; margin-bottom: 30px;">KLIK BANK UNTUK MELIHAT REKENING</h3>
-                <div class="bank-grid">
-                    <div class="bank-card" onclick="showBankInfo('bca')">
-                        <div class="bank-logo" style="background: #0066AE; color: white;">BCA</div>
-                        <h4>BANK BCA</h4>
-                        <p>Klik lihat rekening</p>
-                    </div>
-                    <div class="bank-card" onclick="showBankInfo('bri')">
-                        <div class="bank-logo" style="background: #00529C; color: white;">BRI</div>
-                        <h4>BANK BRI</h4>
-                        <p>Klik lihat rekening</p>
-                    </div>
-                    <div class="bank-card" onclick="showBankInfo('mandiri')">
-                        <div class="bank-logo" style="background: #00843D; color: white;">MANDIRI</div>
-                        <h4>BANK MANDIRI</h4>
-                        <p>Klik lihat rekening</p>
-                    </div>
-                    <div class="bank-card" onclick="showBankInfo('bsi')">
-                        <div class="bank-logo" style="background: #7F2B7B; color: white;">BSI</div>
-                        <h4>BANK BSI</h4>
-                        <p>Klik lihat rekening</p>
-                    </div>
-                    <div class="bank-card" onclick="showBankInfo('lain')">
-                        <div class="bank-logo" style="background: #FFD700; color: black;">LAIN</div>
-                        <h4>BANK LAINNYA</h4>
-                        <p>Klik lihat info</p>
-                    </div>
+                <h3 style="color: #FFD700; text-align: center; margin-bottom: 30px;">BANK TUJUAN TRANSFER</h3>
+                <div class="bank-card" onclick="showBankInfo('bri')">
+                    <div class="bank-logo">BRI</div>
+                    <h4>BANK BRI</h4>
+                    <p>Klik untuk melihat detail rekening</p>
                 </div>
             </div>
 
             <!-- Bank Info Panel (Akan muncul setelah klik bank) -->
             <div id="bankInfoPanel" class="bank-info-panel hidden">
-                <h3 id="bankName">BANK BCA</h3>
-                <div class="bank-detail">
-                    <p>No Rekening: <strong id="bankAccount">1234567890</strong></p>
-                    <p>A/N: <strong id="bankHolder">Panitia BCC 2026</strong></p>
+                <h3 id="bankName">BANK BRI</h3>
+                <div class="rekening-box" id="bankAccount">
+                    6784 0103 8209 533
                 </div>
-                <img id="bankQr" src="" alt="QR Code" style="width: 200px; height: 200px;">
+                <div class="bank-detail">
+                    <p>A/N: <strong id="bankHolder">ASEP NURHAKIM</strong></p>
+                </div>
+                <img id="bankQr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BRI%3A678401038209533%3Aa.n%20ASEP%20NURHAKIM" alt="QR Code BRI">
                 <p style="color: #FFD700; margin-top: 15px;">⬆️ Scan QR untuk transfer cepat ⬆️</p>
                 <button onclick="closeBankPanel()" style="margin-top: 20px; padding: 10px 30px; background: #FFD700; border: none; border-radius: 30px; font-weight: bold; cursor: pointer;">Tutup</button>
             </div>
@@ -942,8 +918,8 @@
                     <label><i class="fas fa-university"></i> Bank Asal *</label>
                     <select class="form-control" id="senderBank" required>
                         <option value="" disabled selected>Pilih Bank</option>
-                        <option value="BCA">BCA</option>
                         <option value="BRI">BRI</option>
+                        <option value="BCA">BCA</option>
                         <option value="Mandiri">Mandiri</option>
                         <option value="BSI">BSI</option>
                         <option value="BNI">BNI</option>
@@ -956,7 +932,7 @@
                 <i class="fas fa-check-circle"></i> KIRIM PENDAFTARAN
             </button>
 
-            <!-- Tombol WhatsApp -->
+            <!-- Tombol WhatsApp - HANYA ASEP -->
             <div style="background: rgba(255,215,0,0.1); border-radius: 40px; padding: 40px; text-align: center; margin-top: 40px;">
                 <h3 style="color: #FFD700; margin-bottom: 30px; font-size: 24px;">
                     <i class="fab fa-whatsapp"></i> KONFIRMASI VIA WHATSAPP
@@ -964,9 +940,6 @@
                 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
                     <button class="btn-wa" id="waAsep">
                         <i class="fab fa-whatsapp"></i> Asep (0813-2154-2594)
-                    </button>
-                    <button class="btn-wa" id="waGopar">
-                        <i class="fab fa-whatsapp"></i> Gopar (0812-8351-6212)
                     </button>
                 </div>
                 <p style="color: #FFD700; margin-top: 20px; font-size: 14px;">Klik tombol di atas untuk langsung chat via WhatsApp</p>
@@ -976,7 +949,7 @@
         <!-- Result Section -->
         <div id="result"></div>
 
-        <!-- FOOTER - UPDATE SESUAI PERMINTAAN -->
+        <!-- FOOTER -->
         <div class="footer">
             <div class="footer-content">
                 <div class="footer-logo">
@@ -1000,38 +973,14 @@
 
     <script>
         // ============================================
-        // DATA BANK (Isi dengan rekening asli panitia)
+        // DATA BANK - HANYA BRI
         // ============================================
         const bankData = {
-            bca: {
-                name: "BANK BCA",
-                account: "1234567890",
-                holder: "Panitia BCC 2026 (Asep Nurhakim)",
-                qr: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BCA%3A1234567890%3Aa.n%20Panitia%20BCC%202026"
-            },
             bri: {
                 name: "BANK BRI",
-                account: "0987654321",
-                holder: "Panitia BCC 2026 (Abdul Gopar)",
-                qr: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BRI%3A0987654321%3Aa.n%20Panitia%20BCC%202026"
-            },
-            mandiri: {
-                name: "BANK MANDIRI",
-                account: "1122334455",
-                holder: "Panitia BCC 2026",
-                qr: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=MANDIRI%3A1122334455%3Aa.n%20Panitia%20BCC%202026"
-            },
-            bsi: {
-                name: "BANK BSI",
-                account: "5566778899",
-                holder: "Panitia BCC 2026",
-                qr: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BSI%3A5566778899%3Aa.n%20Panitia%20BCC%202026"
-            },
-            lain: {
-                name: "BANK LAINNYA",
-                account: "Hubungi Panitia",
-                holder: "Asep / Gopar",
-                qr: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=Hubungi%20Panitia%20via%20WA"
+                account: "6784 0103 8209 533",
+                holder: "ASEP NURHAKIM",
+                qr: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BRI%3A678401038209533%3Aa.n%20ASEP%20NURHAKIM"
             }
         };
 
@@ -1080,7 +1029,7 @@
         }
 
         // ============================================
-        // FUNGSI WHATSAPP
+        // FUNGSI WHATSAPP - HANYA ASEP
         // ============================================
         function openWhatsApp(phone, message) {
             // Hapus semua karakter non-angka
@@ -1135,9 +1084,9 @@
         });
 
         // ============================================
-        // SUBMIT FINAL - DENGAN URL APPS SCRIPT YANG ANDA BERIKAN
+        // SUBMIT FINAL - GANTI DENGAN URL APPS SCRIPT ANDA
         // ============================================
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxxzbVnxT_YIBjOaL9ZDmBrxV8DL70L2C8iqwRd0PhOiWnNeSaQCC1Ooa1z3BYqPJI/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwl_CKpMcr051u12CZFWOarHlpwfSQzIAdbfi0I0bF72PMkgudPVhgpjUGuV7oGsk50/exec';
 
         function submitRegistration() {
             // Validasi file bukti transfer
@@ -1162,18 +1111,19 @@
                 return;
             }
 
-            // Data lengkap
+            // Data lengkap - PASTIKAN NOMOR WA DALAM FORMAT STRING
             const completeData = {
                 ...formData,
+                phone: String(formData.phone), // PASTIKAN JADI STRING!
                 timestamp: new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' }),
-                transferAmount: transferAmount,
+                transferAmount: String(transferAmount), // Nominal juga jadikan string
                 senderName: document.getElementById('senderName').value,
                 senderBank: document.getElementById('senderBank').value,
                 paymentStatus: '🔵 Menunggu Verifikasi'
             };
 
             // ========================================
-            // KIRIM KE GOOGLE SHEETS (URL YANG ANDA BERIKAN)
+            // KIRIM KE GOOGLE SHEETS
             // ========================================
             fetch(scriptURL, {
                 method: 'POST',
@@ -1276,13 +1226,10 @@
                     <!-- Instruksi Konfirmasi WA -->
                     <p style="color: white; font-size: 18px; margin: 20px 0;">Silakan konfirmasi via WhatsApp dengan klik tombol di bawah:</p>
                     
-                    <!-- Tombol WA -->
+                    <!-- Tombol WA - HANYA ASEP -->
                     <div style="display: flex; justify-content: center; gap: 20px; margin-top: 25px; flex-wrap: wrap;">
-                        <button class="btn-wa" onclick="openWhatsApp('081321542594', 'Halo Mas Asep, saya dari tim *${completeData.teamName}* (Kode: ${completeData.registrationCode}) ingin konfirmasi pendaftaran.')">
+                        <button class="btn-wa" onclick="openWhatsApp('081321542594', 'Halo kak Asep, saya dari tim *${completeData.teamName}* (Kode: ${completeData.registrationCode}) ingin konfirmasi pendaftaran.')">
                             <i class="fab fa-whatsapp"></i> Konfirmasi ke Asep
-                        </button>
-                        <button class="btn-wa" onclick="openWhatsApp('081283516212', 'Halo Mas Gopar, saya dari tim *${completeData.teamName}* (Kode: ${completeData.registrationCode}) ingin konfirmasi pendaftaran.')">
-                            <i class="fab fa-whatsapp"></i> Konfirmasi ke Gopar
                         </button>
                     </div>
                     
@@ -1302,7 +1249,7 @@
         }
 
         // ============================================
-        // EVENT LISTENER UNTUK TOMBOL WA (di payment)
+        // EVENT LISTENER UNTUK TOMBOL WA - HANYA ASEP
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('waAsep')?.addEventListener('click', function() {
@@ -1310,15 +1257,7 @@
                 const regCode = sessionStorage.getItem('pendingRegistration') ? 
                     JSON.parse(sessionStorage.getItem('pendingRegistration')).registrationCode : '';
                 
-                openWhatsApp('081321542594', `Halo Mas Asep, saya dari tim *${teamName}* (Kode: ${regCode}) ingin konfirmasi pendaftaran.`);
-            });
-
-            document.getElementById('waGopar')?.addEventListener('click', function() {
-                const teamName = document.getElementById('teamName')?.value || 'calon peserta';
-                const regCode = sessionStorage.getItem('pendingRegistration') ? 
-                    JSON.parse(sessionStorage.getItem('pendingRegistration')).registrationCode : '';
-                
-                openWhatsApp('081283516212', `Halo Mas Gopar, saya dari tim *${teamName}* (Kode: ${regCode}) ingin konfirmasi pendaftaran.`);
+                openWhatsApp('081321542594', `Halo kak Asep, saya dari tim *${teamName}* (Kode: ${regCode}) ingin konfirmasi pendaftaran.`);
             });
         });
     </script>
