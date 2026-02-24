@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOMOER CHAMPIONS CUP 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: #0a0c0f; color: white; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        /* Header */
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 48px; background: linear-gradient(135deg, #FFD700, #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Info Cards */
+        .info-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin: 40px 0; }
+        .info-card { background: rgba(255,255,255,0.05); border: 1px solid #FFD70033; border-radius: 20px; padding: 25px; text-align: center; }
+        .info-card i { font-size: 40px; color: #FFD700; margin-bottom: 10px; }
+        
+        /* Countdown */
+        .countdown { background: linear-gradient(145deg,#12141A,#1A1E2A); border: 2px solid #FFD700; border-radius: 40px; padding: 50px; text-align: center; margin: 40px 0; }
+        .timer { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .timer-block { background: #00000080; border: 2px solid #FFD700; border-radius: 20px; padding: 20px; min-width: 120px; }
+        .timer-number { font-size: 60px; font-weight: 900; color: #FFD700; }
+        
+        /* Form */
+        .form-section { background: rgba(255,255,255,0.02); border: 2px solid #FFD70033; border-radius: 40px; padding: 50px; margin: 40px 0; }
+        .form-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 25px; }
+        .form-group.full-width { grid-column: span 2; }
+        .form-group label { color: #FFD700; display: block; margin-bottom: 8px; }
+        .form-control { width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 2px solid #FFD70033; border-radius: 30px; color: white; }
+        select.form-control option { background: #12141A; color: white; }
+        
+        /* Checkbox */
+        .checkbox-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 15px; background: rgba(255,255,255,0.02); padding: 30px; border-radius: 30px; margin: 30px 0; }
+        .checkbox-item { display: flex; align-items: center; gap: 10px; }
+        .checkbox-item input { width: 20px; height: 20px; accent-color: #FFD700; }
+        
+        /* Bank */
+        .bank-card { background: rgba(255,255,255,0.03); border: 2px solid #FFD700; border-radius: 20px; padding: 30px; max-width: 300px; margin: 0 auto; text-align: center; cursor: pointer; }
+        .bank-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,215,0,0.2); }
+        .bank-logo { width: 80px; height: 80px; background: #00529C; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 24px; font-weight: 900; color: white; border: 3px solid #FFD700; }
+        
+        /* Bank Info */
+        .bank-info-panel { background: rgba(255,215,0,0.1); border: 3px solid #FFD700; border-radius: 30px; padding: 40px; margin: 30px 0; text-align: center; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .rekening-box { background: rgba(255,215,0,0.2); border: 2px dashed #FFD700; border-radius: 20px; padding: 20px; font-size: 32px; font-weight: 900; font-family: monospace; color: white; }
+        
+        /* Buttons */
+        .btn-primary { background: linear-gradient(135deg,#FFD700,#FFA500); color: black; border: 3px solid white; padding: 18px; font-size: 22px; font-weight: 800; border-radius: 60px; width: 100%; cursor: pointer; transition: 0.3s; }
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(255,215,0,0.4); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        .btn-wa { background: #25D366; color: white; border: none; padding: 15px 40px; border-radius: 60px; font-size: 18px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .btn-wa:hover { background: #128C7E; transform: scale(1.05); }
+        
+        /* Success Message */
+        .success-message { background: linear-gradient(145deg,#12141A,#1A1E2A); border: 4px solid #FFD700; border-radius: 60px; padding: 50px; text-align: center; margin: 40px 0; }
+        .code-box { background: rgba(255,215,0,0.1); padding: 25px; border-radius: 40px; border: 2px solid #FFD700; margin: 30px 0; }
+        .code-box p { font-size: 36px; color: #FFD700; font-weight: 900; }
+        
+        /* File Upload Info */
+        .file-info { background: #00FF8810; border: 2px solid #00FF88; border-radius: 30px; padding: 30px; margin: 30px; }
+        .file-link { color: white; background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 30px; text-decoration: none; display: inline-block; margin: 5px; }
+        .file-link:hover { background: #FFD700; color: black; }
+        
+        /* Footer */
+        .footer { background: linear-gradient(145deg,#0A0C0F,#000); border-radius: 40px 40px 0 0; padding: 50px; margin-top: 80px; border-top: 3px solid #FFD700; text-align: center; }
+        .footer-logo { font-size: 28px; font-weight: 900; background: linear-gradient(135deg,#FFD700,#fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
+        .footer-copyright { color: #FFD700; font-size: 18px; margin: 20px 0; }
+        
+        /* Utility */
+        .hidden { display: none; }
+        .text-center { text-align: center; }
+        .fa-spinner { animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .info-grid, .form-grid, .checkbox-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+            .timer-block { min-width: 70px; padding: 15px; }
+            .timer-number { font-size: 40px; }
+            .rekening-box { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>⚽ BOMOER CHAMPIONS CUP 2026 ⚽</h1>
+            <p>OFFICIAL REGISTRATION PORTAL</p>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="info-grid">
+            <div class="info-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>TANGGAL</h3>
+                <div style="font-size:22px; font-weight:700;">22-25 MARET</div>
+                <div>2026</div>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-clock"></i>
+                <h3>WAKTU</h3>
+                <div style="font-size:22px; font-weight:700;">08.00 - SELESAI</div>
+                <div>WIB</div>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>LOKASI</h3>
+                <div style="font-size:22px; font-weight:700;">LAPANGAN BOMOER</div>
+                <div>Dusun Karangsari</div>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-wallet"></i>
+                <h3>BIAYA</h3>
+                <div style="font-size:22px; font-weight:700;">Rp 950.000</div>
+                <div>(Termasuk Jaminan)</div>
+            </div>
+        </div>
+
+        <!-- Countdown -->
+        <div class="countdown">
+            <div style="color:#FFD700; font-size:28px; font-weight:800; margin-bottom:20px;">⚡ BATAS AKHIR PENDAFTARAN ⚡</div>
+            <div style="font-size:48px; font-weight:900; margin-bottom:10px;">MINGGU, 15 MARET 2026</div>
+            <div style="font-size:32px; margin-bottom:40px;">PUKUL 17:00 WIB</div>
+            
+            <div class="timer" id="timer">
+                <div class="timer-block"><div class="timer-number" id="days">00</div><div>HARI</div></div>
+                <div class="timer-block"><div class="timer-number" id="hours">00</div><div>JAM</div></div>
+                <div class="timer-block"><div class="timer-number" id="minutes">00</div><div>MENIT</div></div>
+                <div class="timer-block"><div class="timer-number" id="seconds">00</div><div>DETIK</div></div>
+            </div>
+        </div>
+
+        <!-- FORM PENDAFTARAN -->
+        <div class="form-section" id="formPendaftaran">
+            <div style="display:flex; align-items:center; gap:20px; margin-bottom:40px; flex-wrap:wrap;">
+                <h2 style="color:#FFD700; font-size:36px;"><i class="fas fa-edit"></i> FORM PENDAFTARAN</h2>
+                <div style="background:#00FF8810; border:2px solid #00FF88; padding:8px 25px; border-radius:50px; color:#00FF88; margin-left:auto;">
+                    <i class="fas fa-lock"></i> Data Terenkripsi
+                </div>
+            </div>
+
+            <form id="registrationForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fas fa-users"></i> Nama Tim/Klub *</label>
+                        <input type="text" class="form-control" id="teamName" placeholder="Contoh: BOMOER FC" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-map-pin"></i> Asal Daerah *</label>
+                        <input type="text" class="form-control" id="origin" placeholder="Contoh: Cilacap / Banyumas" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-user-tie"></i> Penanggung Jawab *</label>
+                        <input type="text" class="form-control" id="picName" placeholder="Nama lengkap sesuai KTP" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-briefcase"></i> Jabatan *</label>
+                        <select class="form-control" id="position" required>
+                            <option value="" disabled selected>Pilih Jabatan</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Pelatih">Pelatih</option>
+                            <option value="Kapten">Kapten</option>
+                            <option value="Official">Official</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fab fa-whatsapp"></i> No WhatsApp *</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Contoh: 08123456789" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="contoh@email.com">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-home"></i> Alamat Lengkap *</label>
+                        <textarea class="form-control" id="address" rows="3" placeholder="Alamat sesuai KTP" required></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-id-card"></i> Upload KTP Penanggung Jawab *</label>
+                        <input type="file" class="form-control" id="ktpFile" accept=".jpg,.jpeg,.png,.pdf" required>
+                        <small style="color:#FFD700;">Format: JPG, PNG, PDF (Maks 5MB)</small>
+                    </div>
+                </div>
+
+                <!-- Checkbox -->
+                <div class="checkbox-grid">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="agree1" required>
+                        <label for="agree1">Mematuhi seluruh peraturan turnamen</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="agree2" required>
+                        <label for="agree2">Bermain dengan jiwa fair play</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="agree3" required>
+                        <label for="agree3">Bertanggung jawab atas supporter</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="agree4" required>
+                        <label for="agree4">Siap menerima sanksi jika melanggar</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-paper-plane"></i> DAFTAR SEKARANG
+                </button>
+            </form>
+        </div>
+
+        <!-- PEMBAYARAN -->
+        <div id="paymentSection" class="form-section hidden">
+            <div style="text-align:center; margin-bottom:30px;">
+                <h2 style="color:#FFD700; font-size:36px;"><i class="fas fa-credit-card"></i> INFORMASI PEMBAYARAN</h2>
+            </div>
+            
+            <div class="text-center" style="margin:30px 0;">
+                <div style="font-size:60px; font-weight:900; color:#FFD700; text-shadow:0 0 30px #FFD700;">Rp 400.000</div>
+                <div style="font-size:18px;">DP Minimal 50% dari Rp 800.000 (Rp 400.000)</div>
+                <div style="font-size:14px; color:#FFD700; margin-top:5px;">+ Rp 150.000 Uang Jaminan dibayar saat pelunasan</div>
+                <div style="font-size:20px; color:#00FF88; font-weight:800; margin-top:10px;">Total: Rp 950.000</div>
+            </div>
+
+            <!-- BANK BRI (HANYA SATU) -->
+            <div class="bank-section">
+                <h3 style="color:#FFD700; text-align:center; margin-bottom:30px;">BANK TUJUAN TRANSFER</h3>
+                <div class="bank-card" onclick="showBankInfo()">
+                    <div class="bank-logo">BRI</div>
+                    <h4>BANK BRI</h4>
+                    <p>Klik untuk melihat detail rekening</p>
+                </div>
+            </div>
+
+            <!-- Panel Info BRI -->
+            <div id="bankInfoPanel" class="bank-info-panel hidden">
+                <h3 style="color:#FFD700; font-size:32px;">BANK BRI</h3>
+                <div class="rekening-box">6784 0103 8209 533</div>
+                <div style="font-size:24px; margin:20px 0;">A/N: <strong style="color:#FFD700;">ASEP NURHAKIM</strong></div>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BRI%3A678401038209533%3Aa.n%20ASEP%20NURHAKIM" style="width:200px; border:3px solid #FFD700; border-radius:20px; padding:10px; background:white;">
+                <p style="color:#FFD700; margin-top:15px;">⬆️ Scan QR untuk transfer cepat ⬆️</p>
+                <button onclick="closeBankInfo()" style="margin-top:20px; padding:10px 30px; background:#FFD700; border:none; border-radius:30px; font-weight:bold; cursor:pointer;">Tutup</button>
+            </div>
+
+            <!-- Form Transfer -->
+            <div class="form-grid" style="margin-top:40px;">
+                <div class="form-group">
+                    <label><i class="fas fa-file-invoice"></i> Upload Bukti Transfer *</label>
+                    <input type="file" class="form-control" id="paymentProof" accept=".jpg,.jpeg,.png,.pdf" required>
+                    <small style="color:#FFD700;">Format: JPG, PNG, PDF (Maks 5MB)</small>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-money-bill-wave"></i> Nominal Transfer *</label>
+                    <input type="number" class="form-control" id="transferAmount" min="400000" placeholder="Contoh: 400000" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Nama Pengirim *</label>
+                    <input type="text" class="form-control" id="senderName" placeholder="Nama sesuai rekening" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-university"></i> Bank Asal *</label>
+                    <select class="form-control" id="senderBank" required>
+                        <option value="" disabled selected>Pilih Bank</option>
+                        <option value="BRI">BRI</option>
+                        <option value="BCA">BCA</option>
+                        <option value="Mandiri">Mandiri</option>
+                        <option value="BSI">BSI</option>
+                        <option value="BNI">BNI</option>
+                        <option value="Lainnya">Bank Lainnya</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="submitRegistration()" class="btn-primary">
+                <i class="fas fa-check-circle"></i> KIRIM PENDAFTARAN
+            </button>
+
+            <!-- WhatsApp - HANYA ASEP -->
+            <div style="background:rgba(255,215,0,0.1); border-radius:40px; padding:40px; text-align:center; margin-top:40px;">
+                <h3 style="color:#FFD700; margin-bottom:30px; font-size:24px;">
+                    <i class="fab fa-whatsapp"></i> KONFIRMASI VIA WHATSAPP
+                </h3>
+                <button class="btn-wa" id="waAsep">
+                    <i class="fab fa-whatsapp"></i> Asep (0813-2154-2594)
+                </button>
+                <p style="color:#FFD700; margin-top:20px;">Klik tombol untuk langsung chat WhatsApp</p>
+            </div>
+        </div>
+
+        <!-- HASIL PENDAFTARAN -->
+        <div id="result"></div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-logo">© PANITIA TURNAMEN "BOMOER CHAMPIONS CUP 2026"</div>
+            <div style="margin:15px 0;">Dusun Karangsari, Desa Karangsari, Kec. Cimanggu, Kab. Cilacap</div>
+            <div class="footer-copyright">@TeamArahBaru All Right Reserve</div>
+        </div>
+    </div>
+
+    <script>
+        // ================== COUNTDOWN TIMER ==================
+        function updateCountdown() {
+            const deadline = new Date('March 15, 2026 17:00:00 GMT+7').getTime();
+            const now = new Date().getTime();
+            const distance = deadline - now;
+
+            if (distance < 0) {
+                document.getElementById('timer').innerHTML = '<h3 style="color:#FFD700;">⏰ PENDAFTARAN TELAH DITUTUP ⏰</h3>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+
+        // ================== BANK INFO ==================
+        function showBankInfo() {
+            document.getElementById('bankInfoPanel').classList.remove('hidden');
+        }
+        
+        function closeBankInfo() {
+            document.getElementById('bankInfoPanel').classList.add('hidden');
+        }
+
+        // ================== FUNGSI WHATSAPP ==================
+        function openWA(phone, message) {
+            const cleanPhone = phone.replace(/[^0-9]/g, '');
+            const formattedPhone = cleanPhone.startsWith('62') ? cleanPhone : '62' + cleanPhone.slice(1);
+            window.open(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        document.getElementById('waAsep')?.addEventListener('click', function() {
+            const teamName = document.getElementById('teamName')?.value || 'calon peserta';
+            const regData = sessionStorage.getItem('pendingRegistration');
+            const regCode = regData ? JSON.parse(regData).registrationCode : '';
+            openWA('081321542594', `Halo kak Asep, saya dari tim *${teamName}* (Kode: ${regCode}) ingin konfirmasi pendaftaran.`);
+        });
+
+        // ================== FORM STEP 1 ==================
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validasi checkbox
+            if (!document.getElementById('agree1').checked || !document.getElementById('agree2').checked || 
+                !document.getElementById('agree3').checked || !document.getElementById('agree4').checked) {
+                alert('Harap centang semua persetujuan!');
+                return;
+            }
+
+            // Validasi file KTP
+            if (!document.getElementById('ktpFile').files[0]) {
+                alert('Harap upload file KTP!');
+                return;
+            }
+
+            // Simpan data ke session
+            const formData = {
+                teamName: document.getElementById('teamName').value,
+                origin: document.getElementById('origin').value,
+                picName: document.getElementById('picName').value,
+                position: document.getElementById('position').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                address: document.getElementById('address').value,
+                registrationCode: 'BCC-' + Math.random().toString(36).substr(2, 9).toUpperCase() + '-2026'
+            };
+
+            sessionStorage.setItem('pendingRegistration', JSON.stringify(formData));
+
+            // Tampilkan payment section
+            document.getElementById('formPendaftaran').classList.add('hidden');
+            document.getElementById('paymentSection').classList.remove('hidden');
+            document.getElementById('paymentSection').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // ========== 🔴 GANTI URL INI DENGAN URL APPS SCRIPT ANDA ==========
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxKCGAsicaS0b7DVE8iz6ra8Ps8cypynT1EzxQ7DfkAQkq30pSwWPpU_l83nGH-qfw/exec';
+
+        // ================== SUBMIT FINAL ==================
+        function submitRegistration() {
+            // Validasi file
+            const paymentProof = document.getElementById('paymentProof').files[0];
+            const ktpFile = document.getElementById('ktpFile').files[0];
+            const transferAmount = document.getElementById('transferAmount').value;
+
+            if (!paymentProof) {
+                alert('Harap upload bukti transfer!');
+                return;
+            }
+
+            if (transferAmount < 400000) {
+                alert('Minimal transfer adalah Rp 400.000!');
+                return;
+            }
+
+            // Ambil data dari session
+            const formData = JSON.parse(sessionStorage.getItem('pendingRegistration'));
+            if (!formData) {
+                alert('Data tidak ditemukan. Silakan daftar ulang.');
+                return;
+            }
+
+            // Siapkan FormData
+            const formDataToSend = new FormData();
+            formDataToSend.append('registrationCode', formData.registrationCode);
+            formDataToSend.append('teamName', formData.teamName);
+            formDataToSend.append('origin', formData.origin);
+            formDataToSend.append('picName', formData.picName);
+            formDataToSend.append('position', formData.position);
+            formDataToSend.append('phone', String(formData.phone));
+            formDataToSend.append('email', formData.email || '');
+            formDataToSend.append('address', formData.address);
+            formDataToSend.append('paymentStatus', '🔵 Menunggu Verifikasi');
+            formDataToSend.append('senderBank', document.getElementById('senderBank').value);
+            formDataToSend.append('transferAmount', String(transferAmount));
+            formDataToSend.append('senderName', document.getElementById('senderName').value);
+
+            // Proses 2 file
+            let filesProcessed = 0;
+
+            // Baca file KTP
+            const ktpReader = new FileReader();
+            ktpReader.onload = function(e) {
+                formDataToSend.append('ktpContent', e.target.result);
+                formDataToSend.append('ktpFilename', ktpFile.name);
+                formDataToSend.append('ktpFiletype', ktpFile.type);
+                filesProcessed++;
+                if (filesProcessed === 2) kirimData();
+            };
+            ktpReader.readAsDataURL(ktpFile);
+
+            // Baca file bukti transfer
+            const buktiReader = new FileReader();
+            buktiReader.onload = function(e) {
+                formDataToSend.append('buktiContent', e.target.result);
+                formDataToSend.append('buktiFilename', paymentProof.name);
+                formDataToSend.append('buktiFiletype', paymentProof.type);
+                filesProcessed++;
+                if (filesProcessed === 2) kirimData();
+            };
+            buktiReader.readAsDataURL(paymentProof);
+
+            // Kirim data ke Apps Script
+            function kirimData() {
+                // Tampilkan loading
+                document.querySelector('.btn-primary').disabled = true;
+                document.querySelector('.btn-primary').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: formDataToSend
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Sembunyikan payment section
+                        document.getElementById('paymentSection').classList.add('hidden');
+                        
+                        // Tampilkan pesan sukses
+                        tampilkanSukses(formData, data.linkKTP, data.linkBukti);
+                    } else {
+                        alert('Error: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Gagal mengirim data. Coba lagi.');
+                })
+                .finally(() => {
+                    document.querySelector('.btn-primary').disabled = false;
+                    document.querySelector('.btn-primary').innerHTML = '<i class="fas fa-check-circle"></i> KIRIM PENDAFTARAN';
+                });
+            }
+        }
+
+        // ================== TAMPILKAN PESAN SUKSES ==================
+        function tampilkanSukses(formData, linkKTP, linkBukti) {
+            document.getElementById('result').innerHTML = `
+                <div class="success-message">
+                    <i class="fas fa-check-circle" style="font-size:100px; color:#00FF88; margin-bottom:20px;"></i>
+                    
+                    <h2 style="color:#FFD700; font-size:42px;">PENDAFTARAN BERHASIL!</h2>
+                    
+                    <div class="code-box">
+                        <p>${formData.registrationCode}</p>
+                        <p style="color:white; font-size:16px;">Simpan kode ini untuk konfirmasi</p>
+                    </div>
+                    
+                    <p style="font-size:24px; margin:20px 0;">Terima kasih <strong style="color:#FFD700;">${formData.teamName}</strong>!</p>
+                    
+                    <p style="color:#FFD700; font-size:20px; margin-bottom:30px;">
+                        Status: <strong style="color:#00FF88;">Menunggu Verifikasi Pembayaran</strong>
+                    </p>
+                    
+                    <!-- File Upload Info -->
+                    <div class="file-info">
+                        <h3 style="color:#00FF88; margin-bottom:20px;"><i class="fas fa-cloud-upload-alt"></i> FILE TERKIRIM</h3>
+                        
+                        ${linkKTP && linkKTP !== '-' && !linkKTP.includes('Error') ? 
+                            `<p style="margin:10px 0;">
+                                <i class="fas fa-id-card" style="color:#FFD700;"></i> 
+                                <a href="${linkKTP}" target="_blank" class="file-link">Lihat File KTP</a>
+                            </p>` : ''
+                        }
+                        
+                        ${linkBukti && linkBukti !== '-' && !linkBukti.includes('Error') ? 
+                            `<p style="margin:10px 0;">
+                                <i class="fas fa-file-invoice" style="color:#FFD700;"></i> 
+                                <a href="${linkBukti}" target="_blank" class="file-link">Lihat Bukti Transfer</a>
+                            </p>` : ''
+                        }
+                    </div>
+                    
+                    <p style="font-size:18px; margin:20px 0;">Silakan konfirmasi via WhatsApp:</p>
+                    
+                    <button class="btn-wa" onclick="openWA('081321542594', 'Halo kak Asep, saya dari tim *${formData.teamName}* (Kode: ${formData.registrationCode}) ingin konfirmasi pendaftaran.')">
+                        <i class="fab fa-whatsapp"></i> Konfirmasi ke Asep
+                    </button>
+                </div>
+            `;
+
+            // Hapus dari session
+            sessionStorage.removeItem('pendingRegistration');
+            
+            // Scroll ke result
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
