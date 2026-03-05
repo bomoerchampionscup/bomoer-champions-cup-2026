@@ -613,7 +613,7 @@
 <script>
 // ============================================================
 // KONFIGURASI - GANTI DENGAN URL WEB APP ANDA!
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzEW3-PaQHOTW_X9i3fZPmFvukBRI84fjwOrCysD0rxVeWOm_sM2yeRWIO4fY5ZK_wO/exec'; // GANTI!
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxj-dQa3SBsa0jXeW4FmfcZm9lh9X5loG15H2YB9XZ9xMGNaIyj_LGE6O9g4ndYRoZr/exec'; // GANTI!
 // ============================================================
 
 // Fungsi konversi file ke base64
@@ -641,7 +641,7 @@ async function prosesPendaftaran() {
   const buktiTF = document.getElementById('buktiTF');
   const ktpFile = document.getElementById('ktpFile');
   
-  // Ambil role yang dipilih
+  // Ambil role
   const roleRadios = document.getElementsByName('role');
   let selectedRole = '';
   for (let radio of roleRadios) {
@@ -651,40 +651,28 @@ async function prosesPendaftaran() {
     }
   }
 
-  // VALIDASI WAJIB
+  // VALIDASI
   if (!namaTim.value.trim()) { alert('❌ Nama Tim wajib diisi!'); namaTim.focus(); return; }
-  if (!asalTim.value.trim()) { alert('❌ Asal Desa / Kecamatan wajib diisi!'); asalTim.focus(); return; }
   if (!namaPendaftar.value.trim()) { alert('❌ Nama Penanggung Jawab wajib diisi!'); namaPendaftar.focus(); return; }
   if (!nowa.value.trim()) { alert('❌ Nomor WhatsApp wajib diisi!'); nowa.focus(); return; }
-  if (!selectedRole) { alert('❌ Pilih peran Anda!'); return; }
-  if (buktiTF.files.length === 0) { alert('❌ Upload bukti transfer (DP 30%) wajib!'); buktiTF.focus(); return; }
+  if (buktiTF.files.length === 0) { alert('❌ Upload bukti transfer wajib!'); buktiTF.focus(); return; }
   if (ktpFile.files.length === 0) { alert('❌ Upload scan KTP wajib!'); ktpFile.focus(); return; }
 
-  // Validasi ukuran file (max 5MB)
-  if (buktiTF.files[0].size > 5 * 1024 * 1024) {
-    alert('❌ File bukti TF maksimal 5MB');
-    return;
-  }
-  if (ktpFile.files[0].size > 5 * 1024 * 1024) {
-    alert('❌ File KTP maksimal 5MB');
-    return;
-  }
-
-  // Tampilkan loading, disable tombol
+  // Tampilkan loading
   document.getElementById('loading').style.display = 'block';
   const btn = document.getElementById('btnDaftar');
   btn.disabled = true;
   btn.style.opacity = '0.5';
 
   try {
-    // Konversi file ke base64
+    // Konversi file
     const buktiBase64 = await fileToBase64(buktiTF.files[0]);
     const ktpBase64 = await fileToBase64(ktpFile.files[0]);
 
-    // Siapkan data untuk dikirim
+    // Siapkan data
     const payload = {
       namaTim: namaTim.value.trim(),
-      asalTim: asalTim.value.trim(),
+      asalTim: asalTim.value.trim() || '-',
       namaPendaftar: namaPendaftar.value.trim(),
       nowa: nowa.value.trim(),
       role: selectedRole,
@@ -697,55 +685,51 @@ async function prosesPendaftaran() {
       ktpFileType: ktpFile.files[0].type
     };
 
-    // Kirim ke Google Apps Script
+    console.log('Mengirim data ke:', APPS_SCRIPT_URL);
+    
+    // Kirim ke Apps Script
     const response = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      mode: 'no-cors', // mode no-cors untuk Apps Script
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload)
     });
 
-    // Karena mode no-cors, kita anggap sukses
-    console.log('Data terkirim');
+    const result = await response.json();
+    console.log('Response:', result);
+    
+    if (result.success) {
+      // Buka WA panitia
+      if (result.waLink) {
+        window.open(result.waLink, '_blank');
+      }
+      
+      alert(`✅ PENDAFTARAN BERHASIL!\n\n` +
+            `Tim: ${namaTim.value.toUpperCase()}\n` +
+            `PJ: ${namaPendaftar.value}\n\n` +
+            `📋 Data sudah tersimpan di Google Spreadsheet\n` +
+            `📎 File sudah di Google Drive\n` +
+            `📱 Konfirmasi WA ke panitia\n\n` +
+            `🔔 WAJIB HADIR TM: Kamis, 19 Maret 2026, 14.00 WIB`);
 
-    // Buka WhatsApp untuk konfirmasi ke panitia
-    const pesanWA = `Halo panitia BCC (Hubudin), saya *${namaPendaftar.value}* dari tim *${namaTim.value}* telah mendaftar via form online. Data dan file sudah terkirim ke Google Sheet & Drive. Mohon konfirmasi. Terima kasih.`;
-    window.open(`https://wa.me/6281381191141?text=${encodeURIComponent(pesanWA)}`, '_blank');
-
-    // Tampilkan notifikasi sukses
-    alert(`✅ PENDAFTARAN BERHASIL!
-
-Tim: ${namaTim.value.toUpperCase()}
-PJ: ${namaPendaftar.value}
-
-📋 Data sudah tersimpan di:
-- Google Spreadsheet
-- Google Drive (file)
-
-🔔 WAJIB HADIR TECHNICAL MEETING:
-🗓 Kamis, 19 Maret 2026, 14.00 WIB
-📍 Sekretariat BCC Dusun Karangsari Blok Tonggoh
-
-📞 Konfirmasi via WA ke Hubudin +62 813-8119-1141`);
-
-    // Reset form
-    document.getElementById('formPendaftaran').reset();
+      // Reset form
+      document.getElementById('formPendaftaran').reset();
+    } else {
+      throw new Error(result.error || 'Gagal mendaftar');
+    }
 
   } catch (error) {
-    console.error('Error:', error);
-    alert('❌ Gagal mengirim data. Silakan coba lagi atau hubungi panitia langsung via WA.');
+    console.error('Error detail:', error);
+    alert('❌ Gagal mengirim data.\n\n' +
+          'Error: ' + error.message + '\n\n' +
+          'Hubungi panitia via WA: wa.me/6281381191141');
   } finally {
-    // Sembunyikan loading, enable tombol
     document.getElementById('loading').style.display = 'none';
     btn.disabled = false;
     btn.style.opacity = '1';
   }
 }
-</script>
-</body>
-</html>
 
 
 
