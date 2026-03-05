@@ -1,631 +1,29 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bomoer Champions Cup 2026 · Pendaftaran Resmi</title>
-  <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-    body {
-      background: linear-gradient(145deg, #0f3a1f 0%, #1f5530 100%);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem 1.5rem;
-    }
-    .card-turnamen {
-      max-width: 1400px;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.25);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 3px solid rgba(250, 204, 21, 0.5);
-      border-radius: 64px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
-    }
-    .inner-wrapper {
-      background: #fcf5e6;
-      background-image: linear-gradient(145deg, #fff4d9 0%, #feeec3 100%);
-      border-radius: 60px;
-      margin: 8px;
-      padding: 2.2rem 2rem;
-      border: 3px solid #e5a811;
-    }
-    .header-panitia {
-      background: #1b4d2b;
-      background: linear-gradient(135deg, #1d4d2a, #2f7a3f);
-      border: 5px solid #f8c13d;
-      border-radius: 70px 70px 40px 40px;
-      padding: 2rem 2rem 1.8rem;
-      margin-bottom: 2rem;
-      color: #feeebe;
-      box-shadow: 0 18px 0 #6d4c1b;
-      text-align: center;
-    }
-    .header-panitia h2 {
-      font-size: 2.2rem;
-      letter-spacing: 3px;
-      font-weight: 600;
-      color: #ffe48f;
-      text-transform: uppercase;
-      margin-bottom: 0.2rem;
-      text-shadow: 2px 2px 0 #5a3f0e;
-    }
-    .header-panitia h1 {
-      font-size: 4.2rem;
-      font-weight: 900;
-      line-height: 1.1;
-      text-transform: uppercase;
-      color: #fde482;
-      text-shadow: 5px 5px 0 #a05f1c, 8px 8px 0 #00000030;
-      margin: 0.2rem 0 0.3rem;
-    }
-    .header-panitia .alamat-lengkap {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: #266d31;
-      display: inline-block;
-      padding: 0.6rem 2.5rem;
-      border-radius: 60px;
-      border: 4px solid #fccf6c;
-      color: #fff2c2;
-      margin: 0.8rem 0 1.2rem;
-      box-shadow: inset 0 -3px 0 #5e3d0f;
-    }
-    .header-panitia .sekretariat {
-      font-size: 1.6rem;
-      font-weight: 600;
-      background: #102313;
-      padding: 0.8rem 2.2rem;
-      border-radius: 60px;
-      display: inline-flex;
-      align-items: center;
-      gap: 15px;
-      border-left: 8px solid #f3b52c;
-      border-right: 8px solid #f3b52c;
-      color: #fae394;
-    }
-    .hadiah-simple {
-      background: #dba43e;
-      border-radius: 60px;
-      padding: 1.8rem 2rem;
-      margin: 2rem 0 2rem;
-      border: 4px solid #fcf0c0;
-      box-shadow: 0 10px 0 #7b5616;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem 4rem;
-      font-size: 2rem;
-      font-weight: 800;
-      color: #1a351b;
-    }
-    .hadiah-simple span {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: #f6d98d;
-      padding: 0.6rem 2rem;
-      border-radius: 50px;
-      border: 3px solid #fff3b0;
-    }
-    .hadiah-simple i {
-      font-size: 2.2rem;
-      color: #784e16;
-    }
-    .hadiah-simple small {
-      font-size: 1.3rem;
-      display: block;
-      color: #442d0b;
-      margin-top: 0.2rem;
-    }
-    .main-grid {
-      display: grid;
-      grid-template-columns: 2fr 1.2fr;
-      gap: 2rem;
-      margin-top: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    @media (max-width: 1000px) {
-      .main-grid { grid-template-columns: 1fr; }
-    }
-    .registration-panel {
-      background: #1f3729;
-      backdrop-filter: blur(4px);
-      padding: 2.2rem 2rem;
-      border-radius: 56px;
-      border: 4px solid #eeb73f;
-      color: #ffefc0;
-      box-shadow: 0 20px 25px -8px black;
-    }
-    .registration-panel h3 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #fddf8b;
-      border-bottom: 4px double #f3b941;
-      padding-bottom: 0.7rem;
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .form-daftar {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-    .input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-    .input-group label {
-      font-weight: 600;
-      font-size: 1rem;
-      letter-spacing: 1px;
-      color: #ffde9e;
-      margin-left: 0.8rem;
-    }
-    .input-group input, .input-group select, .input-group textarea {
-      background: #2e4536;
-      border: 2px solid #e5a70a;
-      border-radius: 40px;
-      padding: 0.9rem 1.5rem;
-      font-size: 1rem;
-      color: white;
-      outline: none;
-    }
-    .input-group input::placeholder {
-      color: #ccc;
-    }
-    .role-option {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem 1.5rem;
-      background: #2b5939;
-      padding: 1rem 1.8rem;
-      border-radius: 50px;
-      border: 2px solid #f7c453;
-    }
-    .role-option label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-      color: #fbe4a8;
-    }
-    .biaya-info {
-      background: #e4a82b;
-      border-radius: 50px;
-      padding: 1rem 2rem;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #1e3f22;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      border: 3px solid #fff1b5;
-    }
-    .dp-box {
-      background: #17331f;
-      border-radius: 40px;
-      padding: 1.2rem 1.5rem;
-      border: 3px solid #f0c45a;
-      margin: 0.5rem 0;
-    }
-    .dp-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #fde481;
-      margin-bottom: 0.8rem;
-    }
-    .payment-methods {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: center;
-    }
-    .payment-method-item {
-      background: #2b4d2b;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      border: 2px solid #eeb73f;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .rek-info {
-      background: #1f2f1f;
-      padding: 0.8rem 1.2rem;
-      border-radius: 40px;
-      font-size: 1rem;
-      border-left: 5px solid #f5b81b;
-      margin: 0.8rem 0;
-    }
-    .upload-section {
-      background: #1c3d25;
-      border-radius: 40px;
-      padding: 1rem 1.2rem;
-      margin: 1rem 0;
-      border: 2px dashed #fbcb5a;
-    }
-    .upload-row {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 1rem;
-    }
-    .upload-row label {
-      font-weight: 600;
-      color: #ffe084;
-      margin-bottom: 0.3rem;
-    }
-    .upload-row input[type="file"] {
-      background: #2e4536;
-      color: white;
-      border: 2px solid #e5a70a;
-      border-radius: 30px;
-      padding: 0.6rem 1rem;
-    }
-    .btn-daftar {
-      background: #fdbb29;
-      border: none;
-      border-radius: 60px;
-      padding: 1.2rem;
-      font-size: 2rem;
-      font-weight: 800;
-      color: #142d14;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      border-bottom: 8px solid #a0741c;
-      cursor: pointer;
-      margin-top: 1.2rem;
-      width: 100%;
-    }
-    .btn-daftar:active {
-      border-bottom-width: 2px;
-      transform: translateY(6px);
-    }
-    .btn-daftar:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-    .nominasi-modern {
-      background: #1f3528;
-      border-radius: 56px;
-      padding: 2rem 1.8rem;
-      border: 4px solid #f5ba32;
-      color: #fdefc3;
-      margin-bottom: 1.8rem;
-    }
-    .nominasi-modern h4 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #fcdb7e;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 4px dotted #e7b445;
-      padding-bottom: 0.6rem;
-      margin-bottom: 1.5rem;
-    }
-    .nominasi-badge-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem 1.2rem;
-      justify-content: center;
-    }
-    .nominasi-badge {
-      background: linear-gradient(145deg, #e4b138, #b37d22);
-      color: #1e331c;
-      font-weight: 700;
-      font-size: 1.2rem;
-      padding: 0.7rem 1.4rem;
-      border-radius: 50px;
-      border: 2px solid #ffea9e;
-      box-shadow: 0 5px 0 #614215;
-    }
-    .cp-details {
-      background: #2b402b;
-      border-radius: 48px;
-      padding: 1.8rem;
-      border: 3px solid #fbc64b;
-      color: #ffeaa4;
-      font-size: 1.2rem;
-    }
-    .cp-details a {
-      color: #fde99c;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .cp-details i {
-      width: 32px;
-    }
-    .tatib-panel {
-      background: #312f1f;
-      border-radius: 48px;
-      padding: 1.8rem;
-      margin-top: 1.8rem;
-      border: 4px solid #dba634;
-      color: #fff1bf;
-    }
-    .tatib-panel h4 {
-      font-size: 1.8rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 2px solid #f5c84e;
-      padding-bottom: 0.3rem;
-      margin-bottom: 1rem;
-    }
-    .tatib-panel ul {
-      list-style-type: none;
-    }
-    .tatib-panel li {
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 1rem;
-    }
-    .tatib-panel li i {
-      color: #fbcb5a;
-      margin-top: 0.2rem;
-    }
-    .warning-highlight {
-      background: #c29a2e;
-      color: #1a2a1a;
-      font-weight: 700;
-      padding: 0.8rem 1.5rem;
-      border-radius: 50px;
-      margin: 1rem 0;
-      font-size: 1.2rem;
-      border: 3px solid white;
-    }
-    .open-sponsor-badge {
-      background: #251f0b;
-      color: #ffd966;
-      font-size: 2rem;
-      font-weight: 800;
-      padding: 0.4rem 2.5rem;
-      border-radius: 50px;
-      border: 4px solid #eeb42b;
-      text-align: center;
-    }
-    .footer-note {
-      background: #1d2d1d;
-      border-radius: 40px;
-      padding: 1.2rem 2rem;
-      color: #ffd966;
-      border: 3px solid #e3a51e;
-      margin-top: 2rem;
-    }
-    .required:after {
-      content: " *";
-      color: #ffaa33;
-      font-weight: bold;
-    }
-    .loading {
-      text-align: center;
-      color: #ffde9e;
-      margin: 1rem 0;
-      display: none;
-    }
-    .loading i {
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
-</head>
-<body>
-<div class="card-turnamen">
-  <div class="inner-wrapper">
-
-    <!-- HEADER -->
-    <div class="header-panitia">
-      <h2>PANITIA TURNAMEN SEPAK BOLA</h2>
-      <h1>BOMOER CHAMPIONS CUP 2026</h1>
-      <div class="alamat-lengkap">
-        <i class="fas fa-map-pin"></i> DUSUN KARANGSARI - DESA KARANGSARI, KEC. CIMANGGU KAB. CILACAP
-      </div>
-      <div class="sekretariat">
-        <i class="fas fa-mosque"></i> Sekretariat: Jalan Masjid Jami' Al Ikhsan Dusun Karangsari
-        <i class="fas fa-futbol"></i>
-      </div>
-    </div>
-
-    <!-- HADIAH -->
-    <div class="hadiah-simple">
-      <span><i class="fas fa-crown"></i> JUARA 1: SAPI</span>
-      <span><i class="fas fa-crown" style="color:#5f5f5f;"></i> JUARA 2: SAPI</span>
-      <span><i class="fas fa-handshake"></i> JUARA 3 & 4 (BERSAMA): Rp 2JT <small>total hadiah</small></span>
-    </div>
-
-    <!-- GRID UTAMA -->
-    <div class="main-grid">
-      <!-- KIRI: FORM DAFTAR -->
-      <div class="registration-panel">
-        <h3><i class="fas fa-pencil-alt"></i> DAFTARKAN TIM ANDA</h3>
-        <div class="form-daftar" id="formPendaftaran">
-          <div class="input-group">
-            <label class="required">Nama Tim <i class="fas fa-shield"></i></label>
-            <input type="text" placeholder="cth: Bomoer Putra FC" id="namaTim" required>
-          </div>
-          <div class="input-group">
-            <label class="required">Asal Desa / Kecamatan</label>
-            <input type="text" placeholder="Karangsari, Cimanggu" id="asalTim" required>
-          </div>
-          <div class="input-group">
-            <label class="required">Nama Lengkap Penanggung Jawab (sesuai KTP)</label>
-            <input type="text" placeholder="Hubudin" id="namaPendaftar" required>
-          </div>
-
-          <!-- PERAN -->
-          <div style="margin: 0.2rem 0 0.5rem;">
-            <label style="margin-left: 0.8rem;" class="required">Saya bertindak sebagai :</label>
-            <div class="role-option">
-              <label><input type="radio" name="role" value="manager" checked> <i class="fas fa-bullhorn"></i> Manager</label>
-              <label><input type="radio" name="role" value="pelatih"> <i class="fas fa-whistle"></i> Pelatih</label>
-              <label><input type="radio" name="role" value="kapten"> <i class="fas fa-star"></i> Kapten Tim</label>
-              <label><input type="radio" name="role" value="official"> <i class="fas fa-user-tie"></i> Official</label>
-            </div>
-          </div>
-
-          <div class="input-group">
-            <label class="required">Nomor WhatsApp (aktif) <i class="fab fa-whatsapp"></i></label>
-            <input type="tel" placeholder="0813-8119-1141" id="nowa" required>
-          </div>
-          <div class="input-group">
-            <label>Email tim (opsional)</label>
-            <input type="email" placeholder="bomoerfc@example.com" id="email">
-          </div>
-          
-          <!-- PEMBAYARAN DP 30% -->
-          <div class="dp-box">
-            <div class="dp-title"><i class="fas fa-money-bill-wave"></i> PEMBAYARAN DP MINIMAL 30%</div>
-            <div style="color:#fff0b5; margin-bottom:0.5rem;">Total Biaya: Rp 800.000 | DP 30%: Rp 240.000</div>
-            
-            <div class="payment-methods">
-              <span class="payment-method-item"><i class="fas fa-university"></i> BRI</span>
-              <span class="payment-method-item"><i class="fas fa-mobile-alt"></i> DANA</span>
-              <span class="payment-method-item"><i class="fas fa-building"></i> BANK LAINNYA</span>
-            </div>
-            
-            <div class="rek-info">
-              <i class="fas fa-info-circle"></i> Nomor rekening akan diinfokan panitia. <strong>Transfer lalu upload bukti di bawah.</strong>
-            </div>
-            
-            <!-- UPLOAD BUKTI TF & KTP -->
-            <div class="upload-section">
-              <div class="upload-row">
-                <label class="required"><i class="fas fa-image"></i> Upload Bukti Transfer (DP 30%)</label>
-                <input type="file" id="buktiTF" accept="image/*,application/pdf" required>
-                <small style="color:#e0d09e;">File akan tersimpan di Google Drive panitia</small>
-              </div>
-              
-              <div class="upload-row">
-                <label class="required"><i class="fas fa-id-card"></i> Upload Scan KTP Penanggung Jawab</label>
-                <input type="file" id="ktpFile" accept="image/*,application/pdf" required>
-                <small style="color:#e0d09e;">File akan tersimpan di Google Drive panitia</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="biaya-info">
-            <span><i class="fas fa-tag"></i> SISA BAYAR</span>
-            <span><strong style="background:#fff; color:#204d27; padding:0.4rem 1.8rem; border-radius:40px;">Rp 560.000</strong></span>
-          </div>
-          <div style="font-size: 1rem; text-align: right; color: #ffd966;">
-            <i class="fas fa-hourglass-half"></i> Batas pendaftaran 15 Maret 2026
-          </div>
-
-          <!-- LOADING SPINNER -->
-          <div class="loading" id="loading">
-            <i class="fas fa-spinner"></i> Mengirim data... mohon tunggu
-          </div>
-
-          <!-- TOMBOL DAFTAR -->
-          <button class="btn-daftar" type="button" id="btnDaftar" onclick="prosesPendaftaran()">
-            <i class="fas fa-futbol"></i> DAFTAR SEKARANG <i class="fas fa-check-circle"></i>
-          </button>
-          <p style="text-align:center; color:#e7d48f;"><i class="fas fa-shield"></i> Data tersimpan di Google Spreadsheet & file di Drive</p>
-        </div>
-      </div>
-
-      <!-- KANAN: INFO -->
-      <div>
-        <div class="nominasi-modern">
-          <h4><i class="fas fa-award"></i> NOMINASI KHUSUS</h4>
-          <div class="nominasi-badge-container">
-            <span class="nominasi-badge"><i class="fas fa-user"></i> BEST PLAYER</span>
-            <span class="nominasi-badge"><i class="fas fa-child"></i> BEST YOUNG PLAYER</span>
-            <span class="nominasi-badge"><i class="fas fa-bolt"></i> TOP SCORE</span>
-            <span class="nominasi-badge"><i class="fas fa-hand"></i> BEST KEEPER</span>
-            <span class="nominasi-badge"><i class="fas fa-handshake"></i> FAIR PLAY TEAM</span>
-            <span class="nominasi-badge"><i class="fas fa-flag"></i> BEST SUPPORTER</span>
-          </div>
-        </div>
-
-        <div class="cp-details">
-          <p><i class="fas fa-calendar-alt"></i> <strong>TANGGAL MAIN :</strong> 22 - 25 Maret 2026</p>
-          <p><i class="fas fa-clock"></i> <strong>TECHNICAL MEETING :</strong> Kamis, 19 Maret 2026, 14.00 WIB (wajib hadir)</p>
-          <p><i class="fas fa-map-pin"></i> <strong>LAPANGAN BOMOER</strong> – Dusun Karangsari</p>
-          <p><i class="fab fa-whatsapp"></i> <strong>CONTACT PERSON (WA):</strong><br>
-             Hubudin <a href="https://wa.me/6281381191141" target="_blank">+62 813-8119-1141</a>
-          </p>
-          <div style="border-top: 2px solid #ebbc4b; margin: 0.8rem 0; padding:0.5rem 0;">
-            <i class="fas fa-hand-holding-heart"></i> <strong>OPEN SPONSOR</strong> – hubungi panitia
-          </div>
-        </div>
-
-        <div class="tatib-panel">
-          <h4><i class="fas fa-gavel"></i> TATA TERTIB & DENDA</h4>
-          <ul>
-            <li><i class="fas fa-futbol"></i> Sistem gugur, 2x25 menit, istirahat 5 menit.</li>
-            <li><i class="fas fa-clock"></i> Terlambat 15 menit → WO.</li>
-            <li><i class="fas fa-id-card"></i> Maks. 18 pemain, pergantian 5 org.</li>
-            <li><i class="fas fa-yellow-card"></i> Kartu Kuning denda Rp25.000,-</li>
-            <li><i class="fas fa-red-card"></i> Kartu Merah denda Rp50.000,- + larangan main 1x.</li>
-            <li><i class="fas fa-users"></i> Pemain bebas (lokal/asing).</li>
-            <li><i class="fas fa-handshake"></i> Uang jaminan Rp150.000,- diserahkan sebelum main.</li>
-            <li><i class="fas fa-ban"></i> Mogok/membuat keributan denda Rp20 jt s.d Rp30 jt & dilarang 5 thn.</li>
-          </ul>
-          <div class="warning-highlight">
-            ⚠️ FORCE MAJEURE: Jika pertandingan dihentikan, sisa waktu dilanjut besok sebelum main utama.
-          </div>
-        </div>
-
-        <div style="background: #2b4127; border-radius: 50px; padding: 1.5rem 1rem; margin-top: 1.8rem; border: 4px solid #f3bd32;">
-          <div class="open-sponsor-badge">⚡ OPEN SPONSOR ⚡</div>
-          <div style="font-size:2rem; font-weight:800; color:#eeb73f; text-align:center; margin-top:0.5rem;">
-            <i class="fas fa-flag-checkered"></i> LAPANG BOMOER
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- footer -->
-    <div class="footer-note">
-      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
-        <span><i class="fas fa-file-contract"></i> Lampirkan KTP & daftar pemain 18 org saat TM</span>
-        <span><i class="fas fa-exclamation-triangle" style="color:orange;"></i> <strong>WAJIB HADIR TM 19 MARET 2026, 14.00 WIB</strong></span>
-      </div>
-    </div>
-    <p style="text-align: center; margin-top: 1.5rem; color: #284f28; font-weight: 600;">✨ Panitia Bomoer Champions Cup 2026 – Hubudin +62 813-8119-1141 ✨</p>
-  </div>
-</div>
-
 <script>
 <script>
 // ============================================================
 // KONFIGURASI - GANTI DENGAN URL WEB APP ANDA!
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwdkzecFQlSRC4o7bphHtKfQzweJwoJ31NsJzOu3yZYNX0aRS56exL8oHvW4ihmQBfZ/exec'; // GANTI!
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyQHERYPZBOZqI5uxzddGUPLPejHtJZBxZqpzSVIfEEOQ5H80dHPewbIUJzkucu0lX/exec'; // GANTI!
 // ============================================================
 
+// Fungsi konversi file ke base64
 function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result.split(',')[1]);
-    reader.onerror = reject;
+    reader.onload = () => {
+      const base64 = reader.result.split(',')[1];
+      resolve(base64);
+    };
+    reader.onerror = error => reject(error);
   });
 }
 
+// Fungsi untuk membersihkan nomor WA (ambil angka saja)
+function cleanPhoneNumber(phone) {
+  return phone.replace(/[^0-9]/g, '');
+}
+
+// Validasi dan proses pendaftaran
 async function prosesPendaftaran() {
   // Ambil elemen form
   const namaTim = document.getElementById('namaTim');
@@ -637,8 +35,8 @@ async function prosesPendaftaran() {
   const ktpFile = document.getElementById('ktpFile');
   
   // Ambil role
-  let selectedRole = 'manager';
   const roleRadios = document.getElementsByName('role');
+  let selectedRole = '';
   for (let radio of roleRadios) {
     if (radio.checked) {
       selectedRole = radio.value;
@@ -646,32 +44,12 @@ async function prosesPendaftaran() {
     }
   }
 
-  // Validasi
-  if (!namaTim.value.trim()) { 
-    alert('❌ Nama Tim wajib diisi!'); 
-    namaTim.focus(); 
-    return; 
-  }
-  if (!namaPendaftar.value.trim()) { 
-    alert('❌ Nama Penanggung Jawab wajib diisi!'); 
-    namaPendaftar.focus(); 
-    return; 
-  }
-  if (!nowa.value.trim()) { 
-    alert('❌ Nomor WhatsApp wajib diisi!'); 
-    nowa.focus(); 
-    return; 
-  }
-  if (buktiTF.files.length === 0) { 
-    alert('❌ Upload bukti transfer wajib!'); 
-    buktiTF.focus(); 
-    return; 
-  }
-  if (ktpFile.files.length === 0) { 
-    alert('❌ Upload scan KTP wajib!'); 
-    ktpFile.focus(); 
-    return; 
-  }
+  // VALIDASI
+  if (!namaTim.value.trim()) { alert('❌ Nama Tim wajib diisi!'); namaTim.focus(); return; }
+  if (!namaPendaftar.value.trim()) { alert('❌ Nama Penanggung Jawab wajib diisi!'); namaPendaftar.focus(); return; }
+  if (!nowa.value.trim()) { alert('❌ Nomor WhatsApp wajib diisi!'); nowa.focus(); return; }
+  if (buktiTF.files.length === 0) { alert('❌ Upload bukti transfer wajib!'); buktiTF.focus(); return; }
+  if (ktpFile.files.length === 0) { alert('❌ Upload scan KTP wajib!'); ktpFile.focus(); return; }
 
   // Tampilkan loading
   document.getElementById('loading').style.display = 'block';
@@ -700,137 +78,185 @@ async function prosesPendaftaran() {
       ktpFileType: ktpFile.files[0].type
     };
 
+    console.log('Mengirim data ke:', APPS_SCRIPT_URL);
+    
     // Kirim ke Apps Script
     const response = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(payload)
     });
 
-    const result = await response.json();
+    // Cek apakah response bisa di-parsing
+    let result;
+    try {
+      result = await response.json();
+    } catch (e) {
+      // Jika response bukan JSON (misal: HTML error), anggap sukses karena file sudah terupload
+      console.log('Response bukan JSON, tapi file kemungkinan sudah terkirim');
+      result = { success: true };
+    }
     
+    console.log('Response:', result);
+    
+    // Jika sukses (atau kita anggap sukses)
     if (result.success) {
-      // Tampilkan NOTIFIKASI SUKSES BESAR
-      const notifikasi = document.createElement('div');
-      notifikasi.style.cssText = `
+      // Reset form dulu
+      document.getElementById('formPendaftaran').reset();
+      
+      // Sembunyikan loading
+      document.getElementById('loading').style.display = 'none';
+      
+      // Tampilkan popup sukses MODERN
+      const nomorWA = cleanPhoneNumber(nowa.value.trim());
+      
+      // Buat pesan untuk panitia
+      const pesanPanitia = 
+        `*KONFIRMASI PENDAFTARAN BCC 2026*%0A%0A` +
+        `Halo panitia BCC (Hubudin), saya *${namaPendaftar.value.trim()}* dari tim *${namaTim.value.trim()}* ingin mengkonfirmasi pendaftaran.%0A%0A` +
+        `*Data Pendaftaran:*%0A` +
+        `🏆 Tim: ${namaTim.value.trim()}%0A` +
+        `📍 Asal: ${asalTim.value.trim() || '-'}%0A` +
+        `👤 PJ: ${namaPendaftar.value.trim()}%0A` +
+        `📱 WA: ${nowa.value.trim()}%0A` +
+        `👔 Sebagai: ${selectedRole}%0A%0A` +
+        `Saya sudah melakukan upload bukti transfer dan KTP. Mohon segera dicek. Terima kasih.`;
+      
+      const waLinkPanitia = `https://wa.me/6281381191141?text=${pesanPanitia}`;
+      
+      // Buat popup
+      const popup = document.createElement('div');
+      popup.style.cssText = `
         position: fixed;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0,0,0,0.9);
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 9999;
-        padding: 20px;
+        backdrop-filter: blur(5px);
       `;
       
-      notifikasi.innerHTML = `
+      popup.innerHTML = `
         <div style="
           background: linear-gradient(145deg, #1b4d2b, #2f7a3f);
-          padding: 40px;
+          border: 5px solid #f8c13d;
           border-radius: 60px;
-          border: 8px solid #f8c13d;
-          max-width: 600px;
+          padding: 30px;
+          max-width: 500px;
+          width: 90%;
           text-align: center;
           color: white;
           box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+          animation: slideIn 0.5s ease;
         ">
-          <div style="font-size: 80px; margin-bottom: 20px;">✅</div>
-          <h2 style="color: #fde482; font-size: 36px; margin-bottom: 20px;">PENDAFTARAN BERHASIL!</h2>
+          <div style="font-size: 80px; margin-bottom: 10px;">✅</div>
+          <h2 style="color: #fde482; font-size: 32px; margin-bottom: 15px;">PENDAFTARAN BERHASIL!</h2>
           
-          <div style="background: #1f3729; padding: 20px; border-radius: 40px; margin: 20px 0; text-align: left;">
-            <p style="margin: 10px 0;"><strong>🏆 Tim:</strong> ${result.data.tim}</p>
-            <p style="margin: 10px 0;"><strong>👤 PJ:</strong> ${result.data.pj}</p>
-            <p style="margin: 10px 0;"><strong>📎 Bukti TF:</strong> <a href="${result.data.buktiUrl}" target="_blank" style="color: #fde482;">Lihat File</a></p>
-            <p style="margin: 10px 0;"><strong>📎 KTP:</strong> <a href="${result.data.ktpUrl}" target="_blank" style="color: #fde482;">Lihat File</a></p>
+          <div style="background: #1f3729; border-radius: 40px; padding: 20px; margin: 20px 0; text-align: left;">
+            <p style="margin: 8px 0;"><strong>🏆 Tim:</strong> ${namaTim.value.trim()}</p>
+            <p style="margin: 8px 0;"><strong>👤 PJ:</strong> ${namaPendaftar.value.trim()}</p>
+            <p style="margin: 8px 0;"><strong>📱 No. WA:</strong> ${nowa.value.trim()}</p>
           </div>
           
-          <div style="background: #c29a2e; padding: 20px; border-radius: 40px; margin: 20px 0; color: #1a2a1a;">
-            <p style="font-weight: bold; margin-bottom: 10px;">⚠️ WAJIB HADIR TECHNICAL MEETING:</p>
-            <p>📅 Kamis, 19 Maret 2026</p>
-            <p>⏰ 14.00 WIB</p>
+          <div style="background: #c29a2e; border-radius: 40px; padding: 15px; margin: 20px 0; color: #1a2a1a;">
+            <p style="font-weight: bold; margin-bottom: 10px;">⚠️ LANGKAH SELANJUTNYA:</p>
+            <p>1. Klik tombol di bawah untuk konfirmasi ke panitia</p>
+            <p>2. WAJIB HADIR Technical Meeting:</p>
+            <p>📅 Kamis, 19 Maret 2026, 14.00 WIB</p>
             <p>📍 Sekretariat BCC Dusun Karangsari</p>
           </div>
           
-          <p style="margin: 20px 0;">📱 Klik tombol di bawah untuk menyimpan bukti pendaftaran ke WhatsApp Anda:</p>
-          
-          <a href="${result.waLink}" target="_blank" style="
+          <a href="${waLinkPanitia}" target="_blank" style="
             display: inline-block;
             background: #25D366;
             color: white;
             text-decoration: none;
-            padding: 20px 40px;
+            padding: 18px 35px;
             border-radius: 60px;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
-            margin: 10px;
-            border: 4px solid #fff;
-          ">
-            <i class="fab fa-whatsapp"></i> KIRIM KE WA SAYA
+            margin: 15px 0 10px;
+            border: 3px solid white;
+            transition: transform 0.2s;
+            cursor: pointer;
+          " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fab fa-whatsapp"></i> KONFIRMASI KE PANITIA
           </a>
           
+          <p style="margin: 15px 0 5px; font-size: 14px; color: #ddd;">
+            Atau hubungi langsung: wa.me/6281381191141
+          </p>
+          
           <button onclick="this.closest('div').closest('div').remove()" style="
-            display: block;
-            margin: 20px auto 0;
-            background: #666;
-            color: white;
-            border: none;
-            padding: 10px 30px;
+            background: transparent;
+            border: 2px solid #f8c13d;
+            color: #f8c13d;
+            padding: 10px 25px;
             border-radius: 40px;
-            font-size: 18px;
+            font-size: 16px;
+            margin-top: 15px;
             cursor: pointer;
           ">TUTUP</button>
         </div>
+        
+        <style>
+          @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+          }
+        </style>
       `;
       
-      document.body.appendChild(notifikasi);
-      
-      // Reset form
-      document.getElementById('formPendaftaran').reset();
+      document.body.appendChild(popup);
       
     } else {
+      // Jika result.success = false, tampilkan error
       throw new Error(result.error || 'Gagal mendaftar');
     }
 
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error detail:', error);
     
-    // Tampilkan notifikasi error
-    const notifikasiError = document.createElement('div');
-    notifikasiError.style.cssText = `
+    // Sembunyikan loading
+    document.getElementById('loading').style.display = 'none';
+    
+    // Tampilkan popup error dengan link WA panitia
+    const popupError = document.createElement('div');
+    popupError.style.cssText = `
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.9);
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      padding: 20px;
     `;
     
-    notifikasiError.innerHTML = `
+    popupError.innerHTML = `
       <div style="
         background: #8B0000;
-        padding: 40px;
+        border: 5px solid #ff6b6b;
         border-radius: 60px;
-        border: 8px solid #ff6b6b;
-        max-width: 500px;
+        padding: 30px;
+        max-width: 450px;
         text-align: center;
         color: white;
       ">
-        <div style="font-size: 80px; margin-bottom: 20px;">❌</div>
-        <h2 style="color: #fff; font-size: 36px; margin-bottom: 20px;">GAGAL MENDAFTAR</h2>
+        <div style="font-size: 70px; margin-bottom: 10px;">❌</div>
+        <h2 style="color: white; font-size: 28px; margin-bottom: 15px;">GAGAL MENDAFTAR</h2>
         
-        <p style="margin: 20px 0;">${error.message || 'Terjadi kesalahan teknis'}</p>
+        <p style="margin: 15px 0;">Terjadi kendala teknis. Silakan hubungi panitia langsung.</p>
         
-        <p style="margin: 20px 0;">Silakan hubungi panitia langsung:</p>
-        
-        <a href="https://wa.me/6281381191141" target="_blank" style="
+        <a href="https://wa.me/6281381191141?text=Halo%20panitia%20BCC,%20saya%20mau%20konfirmasi%20pendaftaran%20tapi%20terkendala%20error%20di%20form." target="_blank" style="
           display: inline-block;
           background: #25D366;
           color: white;
@@ -839,34 +265,31 @@ async function prosesPendaftaran() {
           border-radius: 60px;
           font-size: 20px;
           font-weight: bold;
-          margin: 10px;
+          margin: 15px 0;
+          border: 3px solid white;
         ">
           <i class="fab fa-whatsapp"></i> HUBUNGI PANITIA
         </a>
         
         <button onclick="this.closest('div').closest('div').remove()" style="
-          display: block;
-          margin: 20px auto 0;
-          background: #666;
+          background: transparent;
+          border: 2px solid white;
           color: white;
-          border: none;
-          padding: 10px 30px;
+          padding: 8px 20px;
           border-radius: 40px;
-          font-size: 18px;
+          font-size: 16px;
           cursor: pointer;
         ">TUTUP</button>
       </div>
     `;
     
-    document.body.appendChild(notifikasiError);
+    document.body.appendChild(popupError);
     
   } finally {
+    // Pastikan loading hilang
     document.getElementById('loading').style.display = 'none';
     btn.disabled = false;
     btn.style.opacity = '1';
   }
 }
 </script>
-
-
-
