@@ -139,6 +139,13 @@
             margin-bottom: 5px;
             font-size: 13px;
         }
+        .file-item i.fa-times {
+            cursor: pointer;
+            color: #dc2626;
+        }
+        .file-item i.fa-times:hover {
+            color: #b91c1c;
+        }
         .payment-card {
             background: linear-gradient(135deg, #fef9e7, #ffffff);
             border: 2px solid #FFD700;
@@ -304,6 +311,9 @@
         input[type="file"] { position: absolute; opacity: 0; width: 0.1px; height: 0.1px; overflow: hidden; z-index: -1; }
         .fa-spinner { animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .hidden-file-input {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -338,14 +348,36 @@
             <div class="form-section active" id="step1">
                 <div class="section-title"><i class="fas fa-users"></i> DATA TIM</div>
                 <div class="form-grid">
-                    <div class="form-group"><label><i class="fas fa-tag"></i> Nama Tim *</label><input type="text" class="form-control" id="teamName" placeholder="Contoh: BOMOER FC" required></div>
-                    <div class="form-group"><label><i class="fas fa-map-marker-alt"></i> Asal Tim/Klub</label><input type="text" class="form-control" id="teamOrigin" placeholder="Contoh: Dusun Karangsari"></div>
-                    <div class="form-group"><label><i class="fas fa-flag"></i> Warna Kostum 1</label><input type="text" class="form-control" id="jersey1" placeholder="Contoh: Hijau"></div>
-                    <div class="form-group"><label><i class="fas fa-flag"></i> Warna Kostum 2 (Cadangan)</label><input type="text" class="form-control" id="jersey2" placeholder="Contoh: Kuning"></div>
-                    <div class="form-group"><label><i class="fas fa-user"></i> Jumlah Pemain</label><input type="number" class="form-control" id="playerCount" min="7" max="18" value="18"></div>
-                    <div class="form-group"><label><i class="fas fa-envelope"></i> Email Tim</label><input type="email" class="form-control" id="email" placeholder="tim@example.com"></div>
-                    <div class="form-group"><label><i class="fab fa-whatsapp"></i> Nomor WhatsApp *</label><input type="tel" class="form-control" id="phone" placeholder="081234567890" required></div>
-                    <div class="form-group"><label><i class="fas fa-user-tie"></i> Jabatan *</label>
+                    <div class="form-group">
+                        <label><i class="fas fa-tag"></i> Nama Tim *</label>
+                        <input type="text" class="form-control" id="teamName" placeholder="Contoh: BOMOER FC" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-map-marker-alt"></i> Asal Tim/Klub</label>
+                        <input type="text" class="form-control" id="teamOrigin" placeholder="Contoh: Dusun Karangsari">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-flag"></i> Warna Kostum 1</label>
+                        <input type="text" class="form-control" id="jersey1" placeholder="Contoh: Hijau">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-flag"></i> Warna Kostum 2 (Cadangan)</label>
+                        <input type="text" class="form-control" id="jersey2" placeholder="Contoh: Kuning">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Jumlah Pemain</label>
+                        <input type="number" class="form-control" id="playerCount" min="7" max="18" value="18">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email Tim</label>
+                        <input type="email" class="form-control" id="email" placeholder="tim@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fab fa-whatsapp"></i> Nomor WhatsApp *</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="081234567890" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user-tie"></i> Jabatan *</label>
                         <select class="form-control" id="position" required>
                             <option value="">Pilih Jabatan</option>
                             <option value="Manager">Manager</option>
@@ -353,13 +385,27 @@
                             <option value="Official">Official</option>
                         </select>
                     </div>
-                    <div class="form-group"><label><i class="fas fa-user"></i> Nama Lengkap *</label><input type="text" class="form-control" id="fullName" placeholder="Nama sesuai KTP" required></div>
-                    <div class="form-group"><label><i class="fas fa-phone"></i> No. HP *</label><input type="tel" class="form-control" id="contactPhone" placeholder="No. HP" required></div>
-                    <div class="form-group full-width"><label><i class="fas fa-map-marker-alt"></i> Alamat *</label><input type="text" class="form-control" id="address" placeholder="Alamat lengkap sesuai KTP" required></div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Nama Lengkap *</label>
+                        <input type="text" class="form-control" id="fullName" placeholder="Nama sesuai KTP" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> No. HP *</label>
+                        <input type="tel" class="form-control" id="contactPhone" placeholder="No. HP" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label><i class="fas fa-map-marker-alt"></i> Alamat *</label>
+                        <input type="text" class="form-control" id="address" placeholder="Alamat lengkap sesuai KTP" required>
+                    </div>
                     <div class="form-group full-width">
                         <label><i class="fas fa-id-card"></i> Upload Foto KTP *</label>
+                        <!-- File input KTP dengan ID yang benar -->
                         <input type="file" id="ktpFile" accept=".jpg,.jpeg,.png,.pdf" style="display: none;">
-                        <div class="upload-area" id="ktpUpload"><i class="fas fa-cloud-upload-alt"></i><p>Klik untuk upload KTP</p><small>Format: JPG, PNG, PDF (Maks 5MB)</small></div>
+                        <div class="upload-area" id="ktpUpload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Klik untuk upload KTP</p>
+                            <small>Format: JPG, PNG, PDF (Maks 5MB)</small>
+                        </div>
                         <div class="file-list" id="ktpFileList"></div>
                         <div class="error-message" id="ktpError">File KTP wajib diupload</div>
                     </div>
@@ -409,8 +455,24 @@
                     <p><i class="fas fa-clock"></i> <strong>Pelunasan:</strong> Saat Technical Meeting (Kamis, 19 Maret 2026, 14.00 WIB)</p>
                 </div>
                 <div class="bank-container">
-                    <div class="bank-card" data-method="BRI" onclick="selectBank(this)"><div class="bank-icon">BRI</div><div class="bank-details"><div class="bank-name">BANK BRI</div><div class="bank-account">122401010173501</div><div class="bank-holder">a.n Hubudin</div></div><div class="radio-btn"></div></div>
-                    <div class="bank-card" data-method="DANA" onclick="selectBank(this)"><div class="bank-icon">DANA</div><div class="bank-details"><div class="bank-name">DANA</div><div class="bank-account">0816855714</div><div class="bank-holder">a.n Hubudin</div></div><div class="radio-btn"></div></div>
+                    <div class="bank-card" data-method="BRI" onclick="selectBank(this)">
+                        <div class="bank-icon">BRI</div>
+                        <div class="bank-details">
+                            <div class="bank-name">BANK BRI</div>
+                            <div class="bank-account">122401010173501</div>
+                            <div class="bank-holder">a.n Hubudin</div>
+                        </div>
+                        <div class="radio-btn"></div>
+                    </div>
+                    <div class="bank-card" data-method="DANA" onclick="selectBank(this)">
+                        <div class="bank-icon">DANA</div>
+                        <div class="bank-details">
+                            <div class="bank-name">DANA</div>
+                            <div class="bank-account">0816855714</div>
+                            <div class="bank-holder">a.n Hubudin</div>
+                        </div>
+                        <div class="radio-btn"></div>
+                    </div>
                 </div>
                 <div class="form-group full-width">
                     <label><i class="fas fa-money-bill-wave"></i> Nominal Transfer (Minimal 30%) *</label>
@@ -419,8 +481,13 @@
                 </div>
                 <div class="form-group full-width">
                     <label><i class="fas fa-receipt"></i> Upload Bukti Transfer *</label>
+                    <!-- File input Payment dengan ID yang benar -->
                     <input type="file" id="paymentFile" accept=".jpg,.jpeg,.png" style="display: none;">
-                    <div class="upload-area" id="paymentUpload"><i class="fas fa-cloud-upload-alt"></i><p>Klik untuk upload bukti pembayaran</p><small>Format: JPG, PNG (Maks 5MB)</small></div>
+                    <div class="upload-area" id="paymentUpload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Klik untuk upload bukti pembayaran</p>
+                        <small>Format: JPG, PNG (Maks 5MB)</small>
+                    </div>
                     <div class="file-list" id="paymentFileList"></div>
                 </div>
             </div>
@@ -495,59 +562,170 @@
         let uploadedFiles = { ktp: null, payment: null };
         let selectedMethod = '';
 
+        // Initialize saat halaman dimuat
         document.addEventListener('DOMContentLoaded', function() {
-            updateStepDisplay();
+            console.log('Halaman dimuat, menginisialisasi...');
+            
+            // Setup file uploads
             setupFileUploads();
+            
+            // Update tampilan
+            updateStepDisplay();
             updateSummary();
             
+            // Listener untuk input jumlah
             document.getElementById('paymentAmount')?.addEventListener('input', function() {
                 const amount = parseInt(this.value) || 0;
-                document.getElementById('paymentInfo').innerHTML = amount >= 240000 ? '✅ Valid' : '⚠️ Minimal Rp 240.000';
+                const info = document.getElementById('paymentInfo');
+                if (amount >= 240000 && amount <= 800000) {
+                    info.innerHTML = '✅ Valid';
+                    info.style.color = '#059669';
+                } else if (amount > 800000) {
+                    info.innerHTML = '⚠️ Maksimal Rp 800.000';
+                    info.style.color = '#dc2626';
+                } else if (amount > 0) {
+                    info.innerHTML = '⚠️ Minimal Rp 240.000';
+                    info.style.color = '#dc2626';
+                } else {
+                    info.innerHTML = 'Minimal: Rp 240.000 (30%)';
+                    info.style.color = '#059669';
+                }
                 updateSummary();
             });
         });
 
+        // ============================================
+        // FUNGSI UPLOAD FILE (FIX)
+        // ============================================
         function setupFileUploads() {
-            ['ktp', 'payment'].forEach(type => {
-                const area = document.getElementById(type + 'Upload');
-                const input = document.getElementById(type + 'File');
-                if (area && input) {
-                    area.addEventListener('click', () => input.click());
-                    input.addEventListener('change', function() {
-                        if (this.files && this.files[0]) {
-                            const file = this.files[0];
-                            if (file.size > 5 * 1024 * 1024) {
-                                alert('File terlalu besar! Maksimal 5MB');
-                                this.value = '';
-                                return;
-                            }
-                            uploadedFiles[type] = file;
-                            document.getElementById(type + 'FileList').innerHTML = 
-                                `<div class="file-item"><div><i class="fas fa-file"></i> ${file.name}</div><i class="fas fa-times" onclick="removeFile('${type}')"></i></div>`;
-                        }
-                    });
+            console.log('Setting up file uploads...');
+            
+            // KTP Upload
+            const ktpArea = document.getElementById('ktpUpload');
+            const ktpInput = document.getElementById('ktpFile');
+            
+            if (ktpArea && ktpInput) {
+                console.log('KTP upload elements ditemukan');
+                
+                // Hapus event listener lama (jika ada)
+                ktpArea.removeEventListener('click', handleKtpClick);
+                
+                // Tambah event listener baru
+                ktpArea.addEventListener('click', handleKtpClick);
+                
+                function handleKtpClick(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Klik area upload KTP');
+                    ktpInput.click();
                 }
-            });
+                
+                ktpInput.addEventListener('change', function(e) {
+                    console.log('File KTP dipilih');
+                    if (this.files && this.files[0]) {
+                        const file = this.files[0];
+                        console.log('File:', file.name, 'Ukuran:', file.size);
+                        
+                        if (file.size > 5 * 1024 * 1024) {
+                            alert('File terlalu besar! Maksimal 5MB');
+                            this.value = '';
+                            return;
+                        }
+                        
+                        uploadedFiles.ktp = file;
+                        const fileList = document.getElementById('ktpFileList');
+                        fileList.innerHTML = 
+                            `<div class="file-item">
+                                <div><i class="fas fa-file"></i> ${file.name}</div>
+                                <i class="fas fa-times" onclick="removeFile('ktp')"></i>
+                            </div>`;
+                        
+                        // Sembunyikan error message
+                        const errorMsg = document.getElementById('ktpError');
+                        if (errorMsg) errorMsg.style.display = 'none';
+                    }
+                });
+            } else {
+                console.log('KTP elements tidak ditemukan');
+            }
+
+            // Payment Upload
+            const paymentArea = document.getElementById('paymentUpload');
+            const paymentInput = document.getElementById('paymentFile');
+            
+            if (paymentArea && paymentInput) {
+                console.log('Payment upload elements ditemukan');
+                
+                paymentArea.removeEventListener('click', handlePaymentClick);
+                
+                paymentArea.addEventListener('click', handlePaymentClick);
+                
+                function handlePaymentClick(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Klik area upload payment');
+                    paymentInput.click();
+                }
+                
+                paymentInput.addEventListener('change', function(e) {
+                    console.log('File payment dipilih');
+                    if (this.files && this.files[0]) {
+                        const file = this.files[0];
+                        console.log('File:', file.name, 'Ukuran:', file.size);
+                        
+                        if (file.size > 5 * 1024 * 1024) {
+                            alert('File terlalu besar! Maksimal 5MB');
+                            this.value = '';
+                            return;
+                        }
+                        
+                        uploadedFiles.payment = file;
+                        const fileList = document.getElementById('paymentFileList');
+                        fileList.innerHTML = 
+                            `<div class="file-item">
+                                <div><i class="fas fa-file"></i> ${file.name}</div>
+                                <i class="fas fa-times" onclick="removeFile('payment')"></i>
+                            </div>`;
+                    }
+                });
+            } else {
+                console.log('Payment elements tidak ditemukan');
+            }
         }
 
+        // Remove file
         window.removeFile = function(type) {
+            console.log('Remove file:', type);
             uploadedFiles[type] = null;
             document.getElementById(type + 'FileList').innerHTML = '';
             document.getElementById(type + 'File').value = '';
+            
+            if (type === 'ktp') {
+                document.getElementById('ktpError').style.display = 'block';
+            }
         }
 
+        // Bank selection
         window.selectBank = function(element) {
             document.querySelectorAll('.bank-card').forEach(c => c.classList.remove('selected'));
             element.classList.add('selected');
             selectedMethod = element.dataset.method;
+            console.log('Selected method:', selectedMethod);
         }
 
+        // Step navigation
         window.goToStep = function(step) {
             if (step < 1 || step > totalSteps) return;
-            if (step > currentStep && !validateStep(currentStep)) {
-                alert('Harap lengkapi step ini dulu!');
-                return;
+            
+            if (step > currentStep) {
+                for (let i = currentStep; i < step; i++) {
+                    if (!validateStep(i)) {
+                        alert('Harap lengkapi step ' + i + ' terlebih dahulu!');
+                        return;
+                    }
+                }
             }
+            
             currentStep = step;
             updateStepDisplay();
         }
@@ -555,28 +733,51 @@
         window.changeStep = function(direction) {
             const newStep = currentStep + direction;
             if (newStep < 1 || newStep > totalSteps) return;
+            
             if (direction > 0 && !validateStep(currentStep)) {
-                alert('Harap lengkapi step ini dulu!');
+                alert('Harap isi semua field yang wajib diisi di step ini!');
                 return;
             }
+            
             currentStep = newStep;
             updateStepDisplay();
         }
 
         function validateStep(step) {
-            if (step === 1) {
-                return document.getElementById('teamName')?.value &&
-                       document.getElementById('phone')?.value &&
-                       document.getElementById('fullName')?.value &&
-                       uploadedFiles.ktp;
+            switch(step) {
+                case 1:
+                    const teamName = document.getElementById('teamName')?.value;
+                    const phone = document.getElementById('phone')?.value;
+                    const position = document.getElementById('position')?.value;
+                    const fullName = document.getElementById('fullName')?.value;
+                    const contactPhone = document.getElementById('contactPhone')?.value;
+                    const address = document.getElementById('address')?.value;
+                    
+                    if (!teamName || !phone || !position || !fullName || !contactPhone || !address) {
+                        return false;
+                    }
+                    
+                    if (!uploadedFiles.ktp) {
+                        document.getElementById('ktpError').style.display = 'block';
+                        return false;
+                    }
+                    
+                    document.getElementById('ktpError').style.display = 'none';
+                    return true;
+                    
+                case 2:
+                    return document.getElementById('agreeRules')?.checked === true;
+                    
+                case 3:
+                    const amount = parseInt(document.getElementById('paymentAmount')?.value) || 0;
+                    return selectedMethod && uploadedFiles.payment && amount >= 240000 && amount <= 800000;
+                    
+                case 4:
+                    return document.getElementById('agreeStatement')?.checked === true;
+                    
+                default:
+                    return true;
             }
-            if (step === 2) return document.getElementById('agreeRules')?.checked;
-            if (step === 3) {
-                const amount = parseInt(document.getElementById('paymentAmount')?.value) || 0;
-                return selectedMethod && uploadedFiles.payment && amount >= 240000;
-            }
-            if (step === 4) return document.getElementById('agreeStatement')?.checked;
-            return true;
         }
 
         function updateStepDisplay() {
@@ -603,7 +804,10 @@
             const amount = parseInt(document.getElementById('paymentAmount')?.value) || 0;
             
             document.getElementById('statementName').textContent = fullName;
+            document.getElementById('statementPosition').textContent = position;
+            document.getElementById('statementPhone').textContent = phone;
             document.getElementById('statementTeam').textContent = teamName;
+            
             document.getElementById('finalTeamName').textContent = teamName;
             document.getElementById('finalName').textContent = fullName;
             document.getElementById('finalPosition').textContent = position;
@@ -616,18 +820,25 @@
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
-                reader.onload = () => resolve({
-                    data: reader.result,
-                    fileName: file.name,
-                    mimeType: file.type
-                });
+                reader.onload = () => {
+                    if (reader.result) {
+                        resolve({
+                            data: reader.result,
+                            fileName: file.name,
+                            mimeType: file.type
+                        });
+                    } else {
+                        reject(new Error('Gagal membaca file'));
+                    }
+                };
                 reader.onerror = reject;
             });
         }
 
+        // Submit form
         document.getElementById('submitForm')?.addEventListener('click', async function() {
             if (!validateStep(4)) {
-                alert('Harap lengkapi semua persyaratan!');
+                alert('Harap lengkapi semua persyaratan di step sebelumnya!');
                 currentStep = 4;
                 updateStepDisplay();
                 return;
@@ -655,9 +866,14 @@
                 };
 
                 let ktpBase64 = null;
-                if (uploadedFiles.ktp) ktpBase64 = await fileToBase64(uploadedFiles.ktp);
+                if (uploadedFiles.ktp) {
+                    ktpBase64 = await fileToBase64(uploadedFiles.ktp);
+                }
+
                 let paymentBase64 = null;
-                if (uploadedFiles.payment) paymentBase64 = await fileToBase64(uploadedFiles.payment);
+                if (uploadedFiles.payment) {
+                    paymentBase64 = await fileToBase64(uploadedFiles.payment);
+                }
 
                 await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
